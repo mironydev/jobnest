@@ -5,42 +5,12 @@ import {
   CircleDollar,
   MapPin,
 } from "@gravity-ui/icons";
-import { Avatar, Skeleton } from "@heroui/react";
+import { Avatar } from "@heroui/react";
 import Link from "next/link";
 import React from "react";
 import { JobCardMenu } from "./JobCardMenu";
 
-const JobsCard = ({ job, savedJobs, isPending }) => {
-  if (isPending) {
-    return (
-      <div className="flex flex-col justify-between p-6 rounded-xl bg-white dark:bg-foreground/10 border">
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <Skeleton className="w-8 h-8 rounded-full" />
-            <Skeleton className="h-4 w-24 rounded" />
-          </div>
-          <Skeleton className="h-9 w-3/4 rounded" />
-          <div className="space-y-2 mt-4">
-            <Skeleton className="h-4 w-full rounded" />
-            <Skeleton className="h-4 w-2/3 rounded" />
-            <Skeleton className="h-4 w-1/3 rounded sm:hidden" />
-          </div>
-          <div className="space-y-1.5 my-6">
-            <div className="flex gap-1">
-              <Skeleton className="h-7 w-26 rounded-full" />
-              <Skeleton className="h-7 w-20 rounded-full" />
-              <Skeleton className="h-7 w-20 rounded-full" />
-            </div>
-            <div className="flex gap-1">
-              <Skeleton className="h-7 w-28 rounded-full" />
-            </div>
-          </div>
-        </div>
-        <Skeleton className="h-6 w-26 ml-2 mt-2 mb-1 rounded-full " />
-      </div>
-    );
-  }
-
+const JobsCard = ({ job, savedJobs }) => {
   const {
     _id,
     jobTitle,

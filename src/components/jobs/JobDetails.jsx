@@ -10,10 +10,9 @@ import {
 } from "@gravity-ui/icons";
 import Link from "next/link";
 import { currencySymbol, formatDate, useSessionClient } from "@/lib/helpers";
-import DashboardSpinner from "../dashboard/DashboardSpinner";
 
 const JobDetails = ({ job, hasApplied, applicationId }) => {
-  const { user, isPending } = useSessionClient();
+  const { user } = useSessionClient();
   const userRole = user?.accountType;
 
   const {
@@ -30,10 +29,6 @@ const JobDetails = ({ job, hasApplied, applicationId }) => {
     salaryMax,
     salaryMin,
   } = job;
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   return (
     <div>

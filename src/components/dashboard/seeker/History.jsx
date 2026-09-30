@@ -1,15 +1,4 @@
-"use client";
-
-import React from "react";
-import DashboardSpinner from "../DashboardSpinner";
-import { useSessionClient } from "@/lib/helpers";
-
 const History = () => {
-  const { isPending } = useSessionClient();
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
   return (
     <div className="flex min-h-screen items-center justify-center px-4 -mt-26">
       <div className="text-center">

@@ -11,8 +11,7 @@ import {
 } from "@gravity-ui/icons";
 import { Chip } from "@heroui/react";
 import Link from "next/link";
-import { capitalize, formatDate, useSessionClient } from "@/lib/helpers";
-import DashboardSpinner from "../DashboardSpinner";
+import { capitalize, formatDate } from "@/lib/helpers";
 
 const RecruiterHomepage = ({
   totalApplications,
@@ -21,8 +20,6 @@ const RecruiterHomepage = ({
   pendingReview,
   activeJobs,
 }) => {
-  const { isPending } = useSessionClient();
-
   const statusMap = {
     applied: {
       color: "default",
@@ -56,10 +53,6 @@ const RecruiterHomepage = ({
     { label: "Pending Review", value: pendingReview },
     { label: "Total Jobs Posted", value: totalJobs },
   ];
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   return (
     <div>

@@ -3,10 +3,11 @@
 import { Pagination } from "@heroui/react";
 
 const JobsPagination = ({ page, setPage, total }) => {
+  const currentPage = Number(page);
   const totalItems = total;
   const itemsPerPage = 9;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const startItem = (page - 1) * itemsPerPage + 1;
+  const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(startItem + itemsPerPage - 1, totalItems);
 
   return (
@@ -20,8 +21,8 @@ const JobsPagination = ({ page, setPage, total }) => {
             <Pagination.Item>
               <Pagination.Previous
                 style={{ outline: "none", boxShadow: "none" }}
-                isDisabled={page === 1}
-                onClick={() => setPage(Math.max(1, page - 1))}
+                isDisabled={currentPage === 1}
+                onClick={() => setPage(Math.max(1, currentPage - 1))}
               >
                 <Pagination.PreviousIcon />
                 <span className="hidden sm:block">Previous</span>
@@ -30,7 +31,7 @@ const JobsPagination = ({ page, setPage, total }) => {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <Pagination.Item key={p}>
                 <Pagination.Link
-                  isActive={p === page}
+                  isActive={p === currentPage}
                   onPress={() => setPage(p)}
                   style={{ outline: "none", boxShadow: "none" }}
                 >
@@ -41,8 +42,8 @@ const JobsPagination = ({ page, setPage, total }) => {
             <Pagination.Item>
               <Pagination.Next
                 style={{ outline: "none", boxShadow: "none" }}
-                isDisabled={page === totalPages}
-                onClick={() => setPage(Math.min(totalPages, page + 1))}
+                isDisabled={currentPage === totalPages}
+                onClick={() => setPage(Math.min(totalPages, currentPage + 1))}
               >
                 <span className="hidden sm:block">Next</span>
                 <Pagination.NextIcon />

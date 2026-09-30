@@ -21,11 +21,8 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 import RecruiterAddCompanyModal from "./RecruiterAddCompanyModal";
 import { useRouter } from "next/navigation";
-import { useSessionClient } from "@/lib/helpers";
-import DashboardSpinner from "../DashboardSpinner";
 
 const RecruiterPostJob = ({ userId, companies }) => {
-  const { isPending } = useSessionClient();
   const [isRemote, setIsRemote] = useState(false);
   const router = useRouter();
 
@@ -68,10 +65,6 @@ const RecruiterPostJob = ({ userId, companies }) => {
       toast.error("Something went wrong");
     }
   };
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   if (!companies.length) {
     return (

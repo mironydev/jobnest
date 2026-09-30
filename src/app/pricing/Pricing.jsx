@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
-const Pricing = ({ user, showSkeleton }) => {
+const Pricing = ({ user }) => {
   const [isDowngradeModalOpen, setIsDowngradeModalOpen] = useState(false);
   const router = useRouter();
 
@@ -288,358 +288,273 @@ const Pricing = ({ user, showSkeleton }) => {
           </Tabs.ListContainer>
         </div>
 
-        {showSkeleton ? (
-          <div className="relative flex flex-wrap justify-center gap-6 lg:gap-8 pt-3 pb-2">
-            {[1, 2, 3].map((card) => (
-              <div
-                key={card}
-                className={`skeleton--shimmer relative w-xs rounded-2xl px-5 py-6 overflow-hidden ${
-                  card === 2
-                    ? "bg-indigo-500 dark:bg-indigo-600/30 xl:scale-105"
-                    : "border dark:border-0 bg-white dark:bg-foreground/10"
-                }`}
-              >
-                <div className="flex flex-col justify-between h-full">
-                  <div>
-                    <div className="flex flex-wrap gap-3 justify-between mb-6">
-                      <div className="flex items-end gap-3 mt-px">
-                        <Skeleton
-                          animationType="none"
-                          className="size-8 rounded-md"
-                        />
+        <>
+          <Tabs.Panel className="pt-3 text-sm" id="monthly">
+            <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+              {monthlyPlans.map((plan) => {
+                const IconComponent = plan.icon;
 
-                        <Skeleton
-                          animationType="none"
-                          className={`h-7 w-24 rounded-md ${
-                            card === 1 ? "w-20" : card === 2 ? "w-10" : "w-24"
+                const isCurrentPlan =
+                  plan.planName === `${user?.accountType}_starter`
+                    ? user?.plan === plan.planName
+                    : user?.plan === plan.planName &&
+                      user?.billingCycle === plan.billingCycle;
+
+                return (
+                  <div
+                    key={plan.planName}
+                    className={`relative w-xs rounded-2xl px-5 py-6 flex flex-col justify-between transition-transform hover:scale-105 ${
+                      plan.popular
+                        ? "inset-shadow-[0_0_40px_rgba(99,102,241,0.5)] bg-indigo-600 text-white dark:bg-indigo-600/30 xl:scale-105 mt-3 md:mt-0"
+                        : "border dark:inset-shadow-[0_1px_40px_rgba(255,255,255,.1)] bg-white dark:bg-foreground/10"
+                    }`}
+                  >
+                    {plan.popular && (
+                      <div className="bg-linear-to-b from-white to-stone-300 dark:from-indigo-500 dark:to-indigo-700 border-t dark:border-0 text-indigo-600 dark:text-white py-1 px-4 font-medium rounded-full absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm whitespace-nowrap">
+                        MOST POPULAR
+                      </div>
+                    )}
+
+                    <div>
+                      <div className="flex flex-wrap gap-3 justify-between mb-6">
+                        <div className="flex items-end gap-3">
+                          <div className="bg-foreground/7 p-2 rounded-md">
+                            <IconComponent />
+                          </div>
+
+                          <p className="text-2xl font-bold">{plan.name}</p>
+                        </div>
+
+                        <div className="flex items-end gap-1">
+                          <p className="text-3xl font-bold">${plan.price}</p>
+
+                          <p
+                            className={`flex ${!plan.popular && "opacity-70"}`}
+                          >
+                            / m
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="mb-4 font-medium">{plan.description}</p>
+
+                      <div className="space-y-2">
+                        {plan.features.map((feature) => (
+                          <div key={feature} className="flex items-start gap-2">
+                            <span
+                              className={
+                                plan.popular ? "text-white" : "text-indigo-500"
+                              }
+                            >
+                              <Check className="w-5 h-5" />
+                            </span>
+
+                            <p className="text-sm opacity-80">{feature}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <form action="/api/checkout_sessions" method="POST">
+                      <input
+                        type="hidden"
+                        name="planName"
+                        value={plan.planName}
+                      />
+
+                      <input
+                        type="hidden"
+                        name="billingCycle"
+                        value={plan.billingCycle}
+                      />
+
+                      <section>
+                        <button
+                          type={plan.name === "Starter" ? "button" : "submit"}
+                          onClick={(e) => {
+                            if (plan.name === "Starter") {
+                              setIsDowngradeModalOpen(true);
+                            }
+
+                            if (!user) {
+                              e.preventDefault();
+                              router.push("/login?redirect=/pricing");
+                            }
+                          }}
+                          disabled={
+                            isCurrentPlan || (!user && plan.name === "Starter")
+                          }
+                          className={`select-none flex justify-between py-4 px-6 w-full rounded-lg mt-8 font-semibold active:scale-95 duration-100 text-base lg:text-sm ${
+                            isCurrentPlan || (!user && plan.name === "Starter")
+                              ? plan.popular
+                                ? "active:scale-100 bg-white dark:bg-indigo-600 text-indigo-600 dark:text-white"
+                                : "active:scale-100 bg-foreground text-background"
+                              : plan.popular
+                                ? "bg-white hover:bg-stone-100 dark:bg-indigo-600 hover:dark:bg-[#563fff] text-indigo-600 dark:text-white cursor-pointer"
+                                : "bg-foreground hover:bg-foreground/90 text-background cursor-pointer"
                           }`}
-                        />
-                      </div>
-
-                      <div className="flex items-end gap-1">
-                        <Skeleton
-                          animationType="none"
-                          className="h-8 w-10 rounded-md"
-                        />
-
-                        <Skeleton
-                          animationType="none"
-                          className="h-5 w-5 rounded-md"
-                        />
-                      </div>
-                    </div>
-
-                    <Skeleton
-                      animationType="none"
-                      className="h-5 w-56 rounded-md mb-4 mt-7"
-                    />
-
-                    <div className="space-y-2">
-                      {[1, 2, 3, 4].map((feature) => (
-                        <div key={feature} className="flex items-center gap-2">
-                          <Skeleton
-                            animationType="none"
-                            className="size-5 rounded-full"
-                          />
-
-                          <Skeleton
-                            animationType="none"
-                            className={`h-4 rounded-md ${
-                              feature === 2
-                                ? "w-48"
-                                : feature === 3
-                                  ? "w-40"
-                                  : "w-52"
-                            }`}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Skeleton
-                    animationType="none"
-                    className="h-13 w-full rounded-lg mt-8"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <>
-            <Tabs.Panel className="pt-3 text-sm" id="monthly">
-              <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
-                {monthlyPlans.map((plan) => {
-                  const IconComponent = plan.icon;
-
-                  const isCurrentPlan =
-                    plan.planName === `${user?.accountType}_starter`
-                      ? user?.plan === plan.planName
-                      : user?.plan === plan.planName &&
-                        user?.billingCycle === plan.billingCycle;
-
-                  return (
-                    <div
-                      key={plan.planName}
-                      className={`relative w-xs rounded-2xl px-5 py-6 flex flex-col justify-between transition-transform hover:scale-105 ${
-                        plan.popular
-                          ? "inset-shadow-[0_0_40px_rgba(99,102,241,0.5)] bg-indigo-600 text-white dark:bg-indigo-600/30 xl:scale-105 mt-3 md:mt-0"
-                          : "border dark:inset-shadow-[0_1px_40px_rgba(255,255,255,.1)] bg-white dark:bg-foreground/10"
-                      }`}
-                    >
-                      {plan.popular && (
-                        <div className="bg-linear-to-b from-white to-stone-300 dark:from-indigo-500 dark:to-indigo-700 border-t dark:border-0 text-indigo-600 dark:text-white py-1 px-4 font-medium rounded-full absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm whitespace-nowrap">
-                          MOST POPULAR
-                        </div>
-                      )}
-
-                      <div>
-                        <div className="flex flex-wrap gap-3 justify-between mb-6">
-                          <div className="flex items-end gap-3">
-                            <div className="bg-foreground/7 p-2 rounded-md">
-                              <IconComponent />
-                            </div>
-
-                            <p className="text-2xl font-bold">{plan.name}</p>
+                        >
+                          <div className="w-full text-left">
+                            {!user && plan.name === "Starter"
+                              ? "Default Plan"
+                              : isCurrentPlan
+                                ? "Current Plan"
+                                : "Choose This Plan"}
                           </div>
 
-                          <div className="flex items-end gap-1">
-                            <p className="text-3xl font-bold">${plan.price}</p>
-
-                            <p className="opacity-70 flex">/ m</p>
-                          </div>
-                        </div>
-
-                        <p className="mb-4 font-medium">{plan.description}</p>
-
-                        <div className="space-y-2">
-                          {plan.features.map((feature) => (
-                            <div
-                              key={feature}
-                              className="flex items-start gap-2"
-                            >
-                              <span
-                                className={
-                                  plan.popular
-                                    ? "text-white"
-                                    : "text-indigo-500"
-                                }
-                              >
-                                <Check className="w-5 h-5" />
-                              </span>
-
-                              <p className="text-sm opacity-80">{feature}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <form action="/api/checkout_sessions" method="POST">
-                        <input
-                          type="hidden"
-                          name="planName"
-                          value={plan.planName}
-                        />
-
-                        <input
-                          type="hidden"
-                          name="billingCycle"
-                          value={plan.billingCycle}
-                        />
-
-                        <section>
-                          <button
-                            type={plan.name === "Starter" ? "button" : "submit"}
-                            onClick={(e) => {
-                              if (plan.name === "Starter") {
-                                setIsDowngradeModalOpen(true);
-                              }
-
-                              if (!user) {
-                                e.preventDefault();
-                                router.push("/login?redirect=/pricing");
-                              }
-                            }}
-                            disabled={
-                              isCurrentPlan ||
-                              (!user && plan.name === "Starter")
-                            }
-                            className={`select-none flex justify-between py-4 px-6 w-full rounded-lg mt-8 font-semibold active:scale-95 duration-100 text-base lg:text-sm ${
-                              isCurrentPlan ||
-                              (!user && plan.name === "Starter")
-                                ? plan.popular
-                                  ? "active:scale-100 bg-white dark:bg-indigo-600 text-indigo-600 dark:text-white"
-                                  : "active:scale-100 bg-foreground text-background"
-                                : plan.popular
-                                  ? "bg-white hover:bg-stone-100 dark:bg-indigo-600 hover:dark:bg-[#563fff] text-indigo-600 dark:text-white cursor-pointer"
-                                  : "bg-foreground hover:bg-foreground/90 text-background cursor-pointer"
-                            }`}
-                          >
-                            <div className="w-full text-left">
-                              {!user && plan.name === "Starter"
-                                ? "Default Plan"
-                                : isCurrentPlan
-                                  ? "Current Plan"
-                                  : "Choose This Plan"}
-                            </div>
-
-                            <div className="flex justify-center items-center">
-                              {!user &&
-                              plan.name === "Starter" ? null : isCurrentPlan ? (
-                                <CircleCheckFill className="w-5 h-5" />
-                              ) : (
-                                <ArrowRight className="w-5 h-5" />
-                              )}
-                            </div>
-                          </button>
-                        </section>
-                      </form>
-                    </div>
-                  );
-                })}
-              </div>
-            </Tabs.Panel>
-
-            <Tabs.Panel className="pt-3 text-sm" id="yearly">
-              <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
-                {yearlyPlans.map((plan) => {
-                  const IconComponent = plan.icon;
-
-                  const isCurrentPlan =
-                    plan.planName === `${user?.accountType}_starter`
-                      ? user?.plan === plan.planName
-                      : user?.plan === plan.planName &&
-                        user?.billingCycle === plan.billingCycle;
-
-                  return (
-                    <div
-                      key={plan.planName}
-                      className={`relative w-xs rounded-2xl px-5 py-6 flex flex-col justify-between transition-transform hover:scale-105 ${
-                        plan.popular
-                          ? "inset-shadow-[0_0_40px_rgba(99,102,241,0.5)] bg-indigo-600 text-white dark:bg-indigo-600/30 xl:scale-105 mt-3 md:mt-0"
-                          : "border dark:inset-shadow-[0_1px_40px_rgba(255,255,255,.1)] bg-white dark:bg-foreground/10"
-                      }`}
-                    >
-                      {plan.popular && (
-                        <div className="bg-linear-to-b from-white to-stone-300 dark:from-indigo-500 dark:to-indigo-700 border-t dark:border-0 text-indigo-600 dark:text-white py-1 px-4 font-medium rounded-full absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm whitespace-nowrap">
-                          MOST POPULAR
-                        </div>
-                      )}
-
-                      <div>
-                        <div className="flex text-nowrap gap-3 justify-between mb-6">
-                          <div className="flex items-end gap-3">
-                            <div className="bg-foreground/7 p-2 rounded-md">
-                              <IconComponent />
-                            </div>
-
-                            <p className="text-2xl font-bold">{plan.name}</p>
-                          </div>
-
-                          <div className="relative flex items-end gap-1">
-                            {plan.originalPrice > plan.price && (
-                              <p className="absolute -bottom-4 right-10 line-through opacity-70">
-                                ${plan.originalPrice}
-                              </p>
+                          <div className="flex justify-center items-center">
+                            {!user &&
+                            plan.name === "Starter" ? null : isCurrentPlan ? (
+                              <CircleCheckFill className="w-5 h-5" />
+                            ) : (
+                              <ArrowRight className="w-5 h-5" />
                             )}
-
-                            <p className="text-3xl font-bold">${plan.price}</p>
-
-                            <p className="opacity-70">/ y</p>
                           </div>
+                        </button>
+                      </section>
+                    </form>
+                  </div>
+                );
+              })}
+            </div>
+          </Tabs.Panel>
+
+          <Tabs.Panel className="pt-3 text-sm" id="yearly">
+            <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+              {yearlyPlans.map((plan) => {
+                const IconComponent = plan.icon;
+
+                const isCurrentPlan =
+                  plan.planName === `${user?.accountType}_starter`
+                    ? user?.plan === plan.planName
+                    : user?.plan === plan.planName &&
+                      user?.billingCycle === plan.billingCycle;
+
+                return (
+                  <div
+                    key={plan.planName}
+                    className={`relative w-xs rounded-2xl px-5 py-6 flex flex-col justify-between transition-transform hover:scale-105 ${
+                      plan.popular
+                        ? "inset-shadow-[0_0_40px_rgba(99,102,241,0.5)] bg-indigo-600 text-white dark:bg-indigo-600/30 xl:scale-105 mt-3 md:mt-0"
+                        : "border dark:inset-shadow-[0_1px_40px_rgba(255,255,255,.1)] bg-white dark:bg-foreground/10"
+                    }`}
+                  >
+                    {plan.popular && (
+                      <div className="bg-linear-to-b from-white to-stone-300 dark:from-indigo-500 dark:to-indigo-700 border-t dark:border-0 text-indigo-600 dark:text-white py-1 px-4 font-medium rounded-full absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm whitespace-nowrap">
+                        MOST POPULAR
+                      </div>
+                    )}
+
+                    <div>
+                      <div className="flex text-nowrap gap-3 justify-between mb-6">
+                        <div className="flex items-end gap-3">
+                          <div className="bg-foreground/7 p-2 rounded-md">
+                            <IconComponent />
+                          </div>
+
+                          <p className="text-2xl font-bold">{plan.name}</p>
                         </div>
 
-                        <p className="mb-4 font-medium">{plan.description}</p>
+                        <div className="relative flex items-end gap-1">
+                          {plan.originalPrice > plan.price && (
+                            <p className="absolute -bottom-4 right-10 line-through opacity-70">
+                              ${plan.originalPrice}
+                            </p>
+                          )}
 
-                        <div className="space-y-2">
-                          {plan.features.map((feature) => (
-                            <div
-                              key={feature}
-                              className="flex items-start gap-2"
-                            >
-                              <span
-                                className={
-                                  plan.popular
-                                    ? "text-white"
-                                    : "text-indigo-500"
-                                }
-                              >
-                                <Check className="w-5 h-5" />
-                              </span>
+                          <p className="text-3xl font-bold">${plan.price}</p>
 
-                              <p className="text-sm opacity-80">{feature}</p>
-                            </div>
-                          ))}
+                          <p
+                            className={`flex ${!plan.popular && "opacity-70"}`}
+                          >
+                            / y
+                          </p>
                         </div>
                       </div>
 
-                      <form action="/api/checkout_sessions" method="POST">
-                        <input
-                          type="hidden"
-                          name="planName"
-                          value={plan.planName}
-                        />
+                      <p className="mb-4 font-medium">{plan.description}</p>
 
-                        <input
-                          type="hidden"
-                          name="billingCycle"
-                          value={plan.billingCycle}
-                        />
-
-                        <section>
-                          <button
-                            type={plan.name === "Starter" ? "button" : "submit"}
-                            onClick={(e) => {
-                              if (plan.name === "Starter") {
-                                setIsDowngradeModalOpen(true);
+                      <div className="space-y-2">
+                        {plan.features.map((feature) => (
+                          <div key={feature} className="flex items-start gap-2">
+                            <span
+                              className={
+                                plan.popular ? "text-white" : "text-indigo-500"
                               }
+                            >
+                              <Check className="w-5 h-5" />
+                            </span>
 
-                              if (!user) {
-                                e.preventDefault();
-                                router.push("/login?redirect=/pricing");
-                              }
-                            }}
-                            disabled={
-                              isCurrentPlan ||
-                              (!user && plan.name === "Starter")
-                            }
-                            className={`select-none flex justify-between py-4 px-6 w-full rounded-lg mt-8 font-semibold active:scale-95 duration-100 text-base lg:text-sm ${
-                              isCurrentPlan ||
-                              (!user && plan.name === "Starter")
-                                ? plan.popular
-                                  ? "active:scale-100 bg-white dark:bg-indigo-600 text-indigo-600 dark:text-white"
-                                  : "active:scale-100 bg-foreground text-background"
-                                : plan.popular
-                                  ? "bg-white hover:bg-stone-100 dark:bg-indigo-600 hover:dark:bg-[#563fff] text-indigo-600 dark:text-white cursor-pointer"
-                                  : "bg-foreground hover:bg-foreground/90 text-background cursor-pointer"
-                            }`}
-                          >
-                            <div className="w-full text-left">
-                              {!user && plan.name === "Starter"
-                                ? "Default Plan"
-                                : isCurrentPlan
-                                  ? "Current Plan"
-                                  : "Choose This Plan"}
-                            </div>
-
-                            <div className="flex justify-center items-center">
-                              {!user &&
-                              plan.name === "Starter" ? null : isCurrentPlan ? (
-                                <CircleCheckFill className="w-5 h-5" />
-                              ) : (
-                                <ArrowRight className="w-5 h-5" />
-                              )}
-                            </div>
-                          </button>
-                        </section>
-                      </form>
+                            <p className="text-sm opacity-80">{feature}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
-            </Tabs.Panel>
-          </>
-        )}
+
+                    <form action="/api/checkout_sessions" method="POST">
+                      <input
+                        type="hidden"
+                        name="planName"
+                        value={plan.planName}
+                      />
+
+                      <input
+                        type="hidden"
+                        name="billingCycle"
+                        value={plan.billingCycle}
+                      />
+
+                      <section>
+                        <button
+                          type={plan.name === "Starter" ? "button" : "submit"}
+                          onClick={(e) => {
+                            if (plan.name === "Starter") {
+                              setIsDowngradeModalOpen(true);
+                            }
+
+                            if (!user) {
+                              e.preventDefault();
+                              router.push("/login?redirect=/pricing");
+                            }
+                          }}
+                          disabled={
+                            isCurrentPlan || (!user && plan.name === "Starter")
+                          }
+                          className={`select-none flex justify-between py-4 px-6 w-full rounded-lg mt-8 font-semibold active:scale-95 duration-100 text-base lg:text-sm ${
+                            isCurrentPlan || (!user && plan.name === "Starter")
+                              ? plan.popular
+                                ? "active:scale-100 bg-white dark:bg-indigo-600 text-indigo-600 dark:text-white"
+                                : "active:scale-100 bg-foreground text-background"
+                              : plan.popular
+                                ? "bg-white hover:bg-stone-100 dark:bg-indigo-600 hover:dark:bg-[#563fff] text-indigo-600 dark:text-white cursor-pointer"
+                                : "bg-foreground hover:bg-foreground/90 text-background cursor-pointer"
+                          }`}
+                        >
+                          <div className="w-full text-left">
+                            {!user && plan.name === "Starter"
+                              ? "Default Plan"
+                              : isCurrentPlan
+                                ? "Current Plan"
+                                : "Choose This Plan"}
+                          </div>
+
+                          <div className="flex justify-center items-center">
+                            {!user &&
+                            plan.name === "Starter" ? null : isCurrentPlan ? (
+                              <CircleCheckFill className="w-5 h-5" />
+                            ) : (
+                              <ArrowRight className="w-5 h-5" />
+                            )}
+                          </div>
+                        </button>
+                      </section>
+                    </form>
+                  </div>
+                );
+              })}
+            </div>
+          </Tabs.Panel>
+        </>
       </Tabs>
 
       {/* downgrade modal */}

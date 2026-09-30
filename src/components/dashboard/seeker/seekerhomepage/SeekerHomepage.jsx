@@ -6,14 +6,9 @@ import Profile from "./Profile";
 import ApplicationStatus from "./ApplicationStatus";
 import RecentApplications from "./RecentApplications";
 import RecentActivity from "./RecentActivity";
-import DashboardSpinner from "../../DashboardSpinner";
 
 const SeekerHomepage = ({ applications, savedJobsCount }) => {
-  const { user, isPending } = useSessionClient();
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
+  const { user } = useSessionClient();
 
   return (
     <div>

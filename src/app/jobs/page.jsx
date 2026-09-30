@@ -7,12 +7,14 @@ const JobsPage = async ({ searchParams }) => {
   const searchQuery = await searchParams;
   const query = new URLSearchParams(searchQuery);
 
-  const { jobs, total } = await getAllJobs(query.toString());
+  const [jobsData, session] = await Promise.all([
+    getAllJobs(query.toString()),
+    auth.api.getSession({
+      headers: await headers(),
+    }),
+  ]);
 
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
+  const { jobs, total } = jobsData;
   const user = session?.user;
 
   const savedJobs = user?.id ? await getSavedJobs(user.id) : { result: [] };

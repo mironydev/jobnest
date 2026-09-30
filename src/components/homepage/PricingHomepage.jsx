@@ -1,16 +1,8 @@
 "use client";
 
 import Pricing from "@/app/pricing/Pricing";
-import { useEffect, useState } from "react";
 
 const PricingHomepage = ({ user }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
-
   return (
     <div className="mt-28 sm:mt-36 px-4">
       <div className="text-center space-y-2">
@@ -26,7 +18,7 @@ const PricingHomepage = ({ user }) => {
         </h2>
       </div>
 
-      <Pricing user={user} showSkeleton={!mounted} />
+      <Pricing user={user} />
     </div>
   );
 };

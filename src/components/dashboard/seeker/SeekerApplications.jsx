@@ -1,6 +1,6 @@
 "use client";
 
-import { capitalize, formatDate, useSessionClient } from "@/lib/helpers";
+import { capitalize, formatDate } from "@/lib/helpers";
 import {
   FileLetterX,
   ArrowRight,
@@ -11,16 +11,9 @@ import {
 } from "@gravity-ui/icons";
 import { Chip } from "@heroui/react";
 import Link from "next/link";
-import DashboardSpinner from "../DashboardSpinner";
 import { MoveUpRight } from "lucide-react";
 
 const SeekerApplications = ({ applications }) => {
-  const { isPending } = useSessionClient();
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
-
   const statusMap = {
     applied: {
       color: "default",

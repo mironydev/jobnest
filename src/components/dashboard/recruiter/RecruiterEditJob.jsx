@@ -19,12 +19,8 @@ import {
 import React, { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { useSessionClient } from "@/lib/helpers";
-import DashboardSpinner from "../DashboardSpinner";
 
 const RecruiterEditJob = ({ job }) => {
-  const { isPending } = useSessionClient();
   const router = useRouter();
   const [jobType, setJobType] = useState(job.jobType || "");
 
@@ -83,10 +79,6 @@ const RecruiterEditJob = ({ job }) => {
       toast.error("Something went wrong");
     }
   };
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   return (
     <div>

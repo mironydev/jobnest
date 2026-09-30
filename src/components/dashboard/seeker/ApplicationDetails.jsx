@@ -14,14 +14,13 @@ import { updateApplicationStatus } from "@/lib/actions/application";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import DashboardSpinner from "../DashboardSpinner";
 import Link from "next/link";
 
 const ApplicationDetails = ({ application }) => {
   const [updatingId, setUpdatingId] = useState(null);
   const router = useRouter();
 
-  const { user, isPending } = useSessionClient();
+  const { user } = useSessionClient();
 
   const statusMap = {
     applied: {
@@ -75,10 +74,6 @@ const ApplicationDetails = ({ application }) => {
       setUpdatingId(null);
     }
   };
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   return (
     <div>

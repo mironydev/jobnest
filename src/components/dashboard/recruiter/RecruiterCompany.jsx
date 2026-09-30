@@ -22,16 +22,13 @@ import {
 import { deleteCompany } from "@/lib/actions/company";
 import { toast } from "sonner";
 import RecruiterEditCompanyModal from "./RecruiterEditCompanyModal";
-import { capitalize, useSessionClient } from "@/lib/helpers";
-import DashboardSpinner from "../DashboardSpinner";
+import { capitalize } from "@/lib/helpers";
 import { Pencil, Trash2 } from "lucide-react";
 
 const RecruiterCompany = ({ companies }) => {
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [deletingCompany, setDeletingCompany] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
-  const { isPending } = useSessionClient();
 
   const handleCompanyDelete = async (companyId, companyName) => {
     const res = await deleteCompany(companyId);
@@ -51,10 +48,6 @@ const RecruiterCompany = ({ companies }) => {
       toast.error("Something went wrong");
     }
   };
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   if (!companies.length) {
     return (

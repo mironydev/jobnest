@@ -21,7 +21,7 @@ const UserFilter = ({ users, setFilteredUsers }) => {
           className="rounded-sm hover:bg-foreground/5 dark:hover:bg-foreground/15"
           style={{ outline: "none", boxShadow: "none" }}
         >
-          <Select.Value className="whitespace-nowrap text-sm data-[placeholder=true]:text-foreground" />
+          <Select.Value className="whitespace-nowrap text-sm data-[placeholder=true]:text-foreground/50" />
           <Select.Indicator />
         </Select.Trigger>
         <Select.Popover className="rounded-lg">

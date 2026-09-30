@@ -143,7 +143,7 @@ export default function Navbar() {
                   </li>
                 </ul>
               ) : (
-                <ul className="hidden md:flex items-center gap-4">
+                <ul className="hidden md:flex items-center gap-2">
                   <li>
                     <Link
                       href={
@@ -153,7 +153,11 @@ export default function Navbar() {
                             ? "/dashboard/admin"
                             : "/dashboard/seeker"
                       }
-                      className={`${!user ? "hidden" : "block"} p-2 active:text-stone-500`}
+                      className={`${!user ? "hidden" : "block"} rounded-md px-3 py-1.25 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-foreground/5 dark:hover:bg-foreground/8 duration-150 ${
+                        pathname.startsWith("/dashboard")
+                          ? "text-stone-700 dark:text-stone-200 bg-foreground/5 dark:bg-foreground/8"
+                          : ""
+                      }`}
                     >
                       Dashboard
                     </Link>
@@ -163,7 +167,11 @@ export default function Navbar() {
                     <li>
                       <Link
                         href="/jobs?page=1"
-                        className="p-2 active:text-stone-500"
+                        className={`px-3 py-1.25 rounded-md hover:text-stone-700 dark:hover:text-stone-200 hover:bg-foreground/5 dark:hover:bg-foreground/8 duration-150 ${
+                          pathname.startsWith("/jobs")
+                            ? "text-stone-700 dark:text-stone-200 bg-foreground/5 dark:bg-foreground/8"
+                            : ""
+                        }`}
                       >
                         {user?.role === "admin"
                           ? "Browse Jobs"
@@ -173,13 +181,20 @@ export default function Navbar() {
                   )}
 
                   <li>
-                    <Link href="/pricing" className="p-2 active:text-stone-500">
+                    <Link
+                      href="/pricing"
+                      className={`px-3 py-1.25 rounded-md hover:text-stone-700 dark:hover:text-stone-200 hover:bg-foreground/5 dark:hover:bg-foreground/8 duration-150 ${
+                        pathname.startsWith("/pricing")
+                          ? "text-stone-700 dark:text-stone-200 bg-foreground/5 dark:bg-foreground/8"
+                          : ""
+                      }`}
+                    >
                       Pricing
                     </Link>
                   </li>
                 </ul>
               )}
-              <div className="hidden sm:block my-auto -mx-3">
+              <div className="hidden sm:block my-auto -ml-4">
                 {isPending ? (
                   <div className="px-2.25 py-2">
                     <Skeleton className="rounded-md">
@@ -246,7 +261,7 @@ export default function Navbar() {
                         onClick={handleSignout}
                         className="hidden rounded-md bg-transparent ml-2.5 ring-0 md:block"
                       >
-                        <ArrowRightFromSquare className="h-5 w-5 text-black hover:text-red-400 dark:text-white hover:dark:text-red-500 cursor-pointer duration-100" />
+                        <ArrowRightFromSquare className="h-5 w-5 text-black hover:text-rose-500 dark:text-white hover:dark:text-rose-600 cursor-pointer duration-100" />
                       </button>
                     </Tooltip.Trigger>
                     <Tooltip.Content

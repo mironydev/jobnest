@@ -6,18 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Mail, Phone } from "lucide-react";
-import DashboardSpinner from "../../DashboardSpinner";
 
 const Empty = ({ children = "Not added" }) => (
   <span className="italic text-sm text-muted">{children}</span>
 );
 
 const SeekerProfileView = () => {
-  const { user, isPending } = useSessionClient();
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
+  const { user } = useSessionClient();
 
   const skills =
     user?.skills
@@ -52,7 +47,7 @@ const SeekerProfileView = () => {
               <h1 className="text-3xl pt-3 sm:pt-0 font-bold text-center sm:text-white sm:text-left sm:text-shadow-lg">
                 {user?.name || <Empty>No name</Empty>}
               </h1>
-              <p className="mt-3 text-center sm:text-left">
+              <p className="mt-3 sm:mt-4 text-center sm:text-left">
                 {user?.headline || <Empty>Add professional headline</Empty>}
               </p>
 
@@ -185,7 +180,7 @@ const SeekerProfileView = () => {
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="px-3 py-1 rounded-md bg-foreground/10 text-sm"
+                className="px-3 py-1 rounded-md bg-foreground/7 text-sm"
               >
                 {skill}
               </span>

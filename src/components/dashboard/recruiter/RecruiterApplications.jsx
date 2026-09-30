@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { capitalize, formatDate, useSessionClient } from "@/lib/helpers";
+import { capitalize, formatDate } from "@/lib/helpers";
 import { FileLetterX } from "@gravity-ui/icons";
 import { ListBox, Select } from "@heroui/react";
 import Link from "next/link";
 import { toast } from "sonner";
-import DashboardSpinner from "../DashboardSpinner";
 import { useRouter } from "next/navigation";
 import { updateApplicationStatus } from "@/lib/actions/application";
 import { MoveUpRight } from "lucide-react";
@@ -21,13 +20,8 @@ const statusOptions = [
 ];
 
 const RecruiterApplications = ({ applications }) => {
-  const { isPending } = useSessionClient();
   const router = useRouter();
   const [updatingId, setUpdatingId] = useState(null);
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   const handleStatusChange = async (appId, newStatus) => {
     setUpdatingId(appId);

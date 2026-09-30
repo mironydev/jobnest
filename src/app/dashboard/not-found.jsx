@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import { useSessionClient } from "@/lib/helpers";
 import Link from "next/link";
 
 const GlobalNotFoundPage = () => {
+  const { user } = useSessionClient();
   return (
     <div className=" flex items-center justify-center mt-8">
       <div className="max-w-2xl w-full text-center">
@@ -26,17 +27,20 @@ const GlobalNotFoundPage = () => {
         {/* Navigation Links */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/"
+            href={`${user?.accountType === "recruiter" ? "/dashboard/recruiter" : user?.accountType === "seeker" ? "/dashboard/seeker" : user?.accountType === "admin" ? "/dashboard/admin" : "/"}`}
             className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-lg active:scale-95 duration-100"
           >
             Go Home
           </Link>
-          <Link
-            href="/jobs"
-            className="flex items-center justify-center gap-2 bg-foreground/10 hover:bg-foreground/20 text-foreground font-semibold px-8 py-3 rounded-lg active:scale-95 duration-100"
-          >
-            Browse Jobs
-          </Link>
+
+          {user?.accountType === "seeker" && (
+            <Link
+              href="/jobs?page=1"
+              className="flex items-center justify-center gap-2 border dark:border-0 bg-white dark:bg-foreground/10 dark:hover:bg-foreground/15 text-foreground font-semibold px-8 py-3 rounded-lg active:scale-95 duration-75"
+            >
+              Browse Jobs
+            </Link>
+          )}
         </div>
       </div>
     </div>

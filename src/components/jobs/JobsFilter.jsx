@@ -85,7 +85,7 @@ const JobsFilter = ({ searchQuery, page, setPage }) => {
             <SearchField.SearchIcon />
             <SearchField.Input
               placeholder="Search by company or job title..."
-              className="placeholder:text-foreground/40"
+              className=""
             />
             <SearchField.ClearButton />
           </SearchField.Group>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useSessionClient } from "@/lib/helpers";
-import DashboardSpinner from "../DashboardSpinner";
 import { Avatar } from "@heroui/react";
 
 const Empty = ({ children = "Not added" }) => (
@@ -17,11 +16,7 @@ const formatPlanName = (plan) => {
 };
 
 const RecruiterSettings = () => {
-  const { isPending, user } = useSessionClient();
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
+  const { user } = useSessionClient();
 
   return (
     <div>

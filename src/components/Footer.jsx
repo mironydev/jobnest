@@ -125,7 +125,8 @@ const Footer = () => {
 
             <div className="flex items-center justify-center lg:justify-start gap-3 mt-6">
               <Link
-                href="/"
+                href="https://www.facebook.com/mironydev"
+                target="_blank"
                 className="flex items-center justify-center hover:-translate-y-0.5 transition-all active:opacity-70"
                 aria-label="Facebook"
               >
@@ -147,7 +148,8 @@ const Footer = () => {
               </Link>
 
               <Link
-                href="/"
+                href="https://www.linkedin.com/in/mironydev"
+                target="_blank"
                 className="flex items-center justify-center hover:-translate-y-0.5 transition-all active:opacity-70"
                 aria-label="LinkedIn"
               >
@@ -169,7 +171,8 @@ const Footer = () => {
               </Link>
 
               <Link
-                href="/"
+                href="https://x.com/mironydev"
+                target="_blank"
                 className="flex items-center justify-center hover:-translate-y-0.5 transition-all active:opacity-70"
                 aria-label="X (formerly Twitter)"
               >

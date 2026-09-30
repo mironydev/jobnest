@@ -1,6 +1,4 @@
-import { Chip, Tooltip } from "@heroui/react";
 import UserFilter from "./UserFilter";
-import { Wrench } from "@gravity-ui/icons";
 
 const UserStats = ({ users, filteredUsers, setFilteredUsers }) => {
   const activeUsers = filteredUsers.filter((user) => !user.banned);
@@ -35,7 +33,7 @@ const UserStats = ({ users, filteredUsers, setFilteredUsers }) => {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+      <div className="flex flex-col md:flex-row justify-between md:items-center gap-3">
         <div>
           <h2 className="text-3xl font-medium whitespace-nowrap">
             User Management
@@ -47,7 +45,7 @@ const UserStats = ({ users, filteredUsers, setFilteredUsers }) => {
         <UserFilter users={users} setFilteredUsers={setFilteredUsers} />
       </div>
       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div className="p-5 rounded-lg border border-foreground/15 bg-white dark:bg-foreground/5">
+        <div className="p-5 rounded-lg border border-foreground/15 bg-white dark:bg-foreground/5 overflow-hidden">
           <p className="text-xs opacity-70">Total Active Users</p>
           <p className="font-medium text-3xl mt-1 mb-2">{activeUsers.length}</p>
           <p
@@ -64,19 +62,19 @@ const UserStats = ({ users, filteredUsers, setFilteredUsers }) => {
             <span className="text-foreground opacity-50">(last 30 days)</span>
           </p>
         </div>
-        <div className="p-5 rounded-md border dark:border-white/15 bg-white dark:bg-foreground/5">
+        <div className="p-5 rounded-md border dark:border-white/15 bg-white dark:bg-foreground/5 overflow-hidden">
           <p className="text-xs opacity-70">New Signups (24h)</p>
           <p className="font-medium text-3xl mt-1 mb-2">{newSignups.length}</p>
           <p className="text-xs opacity-50">Steady activity</p>
         </div>
-        <div className="p-5 rounded-md border dark:border-white/15 bg-white dark:bg-foreground/5">
+        <div className="p-5 rounded-md border dark:border-white/15 bg-white dark:bg-foreground/5 overflow-hidden">
           <p className="text-xs opacity-70">Recruiter Growth</p>
           <p className="font-medium text-3xl mt-1 mb-2">
             {totalRecruiters.length}
           </p>
           <p className="text-xs text-emerald-500">High demand</p>
         </div>
-        <div className="p-5 rounded-md border dark:border-white/15 bg-white dark:bg-foreground/5">
+        <div className="p-5 rounded-md border dark:border-white/15 bg-white dark:bg-foreground/5 overflow-hidden">
           <p className="text-xs opacity-70">Suspended Accounts</p>
           <p className="font-medium text-3xl mt-1 mb-2">{bannedUsers.length}</p>
           <p className="text-xs opacity-50">

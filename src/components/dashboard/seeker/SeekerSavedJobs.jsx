@@ -7,8 +7,6 @@ import { FileLetterX, ArrowRight } from "@gravity-ui/icons";
 import { MoveUpRight, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { formatDate, currencySymbol, useSessionClient } from "@/lib/helpers";
-import { useRouter } from "next/navigation";
-import DashboardSpinner from "../DashboardSpinner";
 import { removeSavedJob } from "@/lib/actions/jobs";
 import { getSavedJobs } from "@/lib/fetch/fetchJobs";
 
@@ -16,7 +14,7 @@ const SeekerSavedJobs = ({ savedJobs, total }) => {
   const [jobs, setJobs] = useState(savedJobs);
   const [removingId, setRemovingId] = useState(null);
   const [openDialogId, setOpenDialogId] = useState(null);
-  const { user, isPending } = useSessionClient();
+  const { user } = useSessionClient();
 
   const handleRemoveSavedJob = async (job) => {
     try {
@@ -49,10 +47,6 @@ const SeekerSavedJobs = ({ savedJobs, total }) => {
     const res = await getSavedJobs(user?.id, value);
     setJobs(res.result);
   };
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   return (
     <div className="min-h-[50vh]">

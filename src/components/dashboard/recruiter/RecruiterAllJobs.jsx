@@ -13,8 +13,7 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "sonner";
-import { capitalize, formatDate, useSessionClient } from "@/lib/helpers";
-import DashboardSpinner from "../DashboardSpinner";
+import { capitalize, formatDate } from "@/lib/helpers";
 import { Eye, EyeOff, Plus, Trash2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -29,7 +28,6 @@ const RecruiterAllJobs = ({ jobsData }) => {
   const [jobToPause, setJobToPause] = useState(null);
   const [isPausing, setIsPausing] = useState(false);
   const [isPauseDialogOpen, setIsPauseDialogOpen] = useState(false);
-  const { isPending } = useSessionClient();
 
   const startIndex = (currentPage - 1) * limit;
   const start = startIndex + 1;
@@ -100,10 +98,6 @@ const RecruiterAllJobs = ({ jobsData }) => {
       setJobToPause(null);
     }
   };
-
-  if (isPending) {
-    return <DashboardSpinner />;
-  }
 
   return (
     <div>
