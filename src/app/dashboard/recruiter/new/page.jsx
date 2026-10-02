@@ -3,6 +3,10 @@ import { auth } from "@/lib/auth";
 import { getMyCompanies } from "@/lib/fetch/fetchCompanies";
 import { headers } from "next/headers";
 
+export const metadata = {
+  title: "Post Job | WorkSphere",
+};
+
 export default async function AddJobPage() {
   const session = await auth.api.getSession({
     headers: await headers(),

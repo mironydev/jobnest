@@ -1,5 +1,8 @@
 import Payments from "@/components/dashboard/admin/Payments";
-import React from "react";
+
+export const metadata = {
+  title: "Payments | WorkSphere",
+};
 
 const PaymentsPage = () => {
   return (

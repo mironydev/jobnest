@@ -6,6 +6,16 @@ import Apply from "./Apply";
 import { getJobDetails, getPlans } from "@/lib/fetch/fetchJobs";
 import { getApplications } from "@/lib/fetch/fetchApplications";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const job = await getJobDetails(id);
+
+  return {
+    title: `Apply for ${job.jobTitle} | WorkSphere`,
+    description: `Apply for the ${job.jobTitle} position at ${job.company.companyName}.`,
+  };
+}
+
 const ApplyPage = async ({ params }) => {
   const { id } = await params;
   const session = await auth.api.getSession({

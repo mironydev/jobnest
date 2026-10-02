@@ -1,6 +1,9 @@
 import Users from "@/components/dashboard/admin/users/Users";
 import { getPlans, listAllUsers } from "@/lib/fetch/fetchJobs";
-import React from "react";
+
+export const metadata = {
+  title: "Users | WorkSphere",
+};
 
 const UsersPage = async () => {
   const { users } = await listAllUsers();

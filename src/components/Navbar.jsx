@@ -303,7 +303,7 @@ export default function Navbar() {
             className={`md:hidden grid transition-[grid-template-rows] duration-150 ease-in-out ${
               isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
             }`}
-            aria-hidden={!isMenuOpen}
+            inert={!isMenuOpen ? "" : undefined}
           >
             <div className="overflow-hidden">
               <div className="border-t border-separator">

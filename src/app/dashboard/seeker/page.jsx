@@ -4,6 +4,10 @@ import { getApplications } from "@/lib/fetch/fetchApplications";
 import { getSavedJobs } from "@/lib/fetch/fetchJobs";
 import { headers } from "next/headers";
 
+export const metadata = {
+  title: "Dashboard | WorkSphere",
+};
+
 const SeekerPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),

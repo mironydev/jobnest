@@ -3,6 +3,10 @@ import { auth } from "@/lib/auth";
 import { getSavedJobs } from "@/lib/fetch/fetchJobs";
 import { headers } from "next/headers";
 
+export const metadata = {
+  title: "Saved Jobs | WorkSphere",
+};
+
 const SavedJobsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),

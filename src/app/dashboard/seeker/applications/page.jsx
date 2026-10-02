@@ -4,6 +4,10 @@ import React from "react";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
+export const metadata = {
+  title: "Applications | WorkSphere",
+};
+
 const ApplicationsPage = async () => {
   console.time("applications: session");
   const session = await auth.api.getSession({

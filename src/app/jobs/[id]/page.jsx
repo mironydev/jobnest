@@ -5,6 +5,16 @@ import { getApplications } from "@/lib/fetch/fetchApplications";
 import { headers } from "next/headers";
 import React from "react";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const job = await getJobDetails(id);
+
+  return {
+    title: `${job.jobTitle} | WorkSphere`,
+    description: `Apply for the ${job.jobTitle} position at ${job.company?.companyName || "WorkSphere"}.`,
+  };
+}
+
 const JobsDetailsPage = async ({ params }) => {
   const { id } = await params;
   const session = await auth.api.getSession({
@@ -23,6 +33,7 @@ const JobsDetailsPage = async ({ params }) => {
         job={job}
         hasApplied={hasApplied}
         applicationId={applicationId}
+        userRole={user?.accountType}
       />
     </div>
   );

@@ -85,8 +85,11 @@ export const JobCardMenu = ({ job, savedJobs }) => {
         if (open) func();
       }}
     >
-      <Dropdown.Trigger style={{ boxShadow: "none", outline: "none" }}>
-        <p className="p-2 hover:bg-foreground/5 active:bg-foreground/5 rounded-sm cursor-pointer">
+      <Dropdown.Trigger
+        aria-label="More options"
+        style={{ boxShadow: "none", outline: "none" }}
+      >
+        <p className="p-2 -m-2 hover:bg-foreground/5 active:bg-foreground/5 rounded-full cursor-pointer">
           <EllipsisVertical className="w-4 h-4" />
         </p>
       </Dropdown.Trigger>

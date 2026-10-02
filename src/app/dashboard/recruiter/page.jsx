@@ -1,6 +1,10 @@
 import RecruiterHomepage from "@/components/dashboard/recruiter/RecruiterHomepage";
 import { getRecruiterStats } from "@/lib/fetch/fetchRecruiterStats";
 
+export const metadata = {
+  title: "Dashboard | WorkSphere",
+};
+
 const RecruiterPage = async () => {
   const {
     totalApplications,

@@ -1,6 +1,9 @@
 import AdminHomepage from "@/components/dashboard/admin/AdminHomepage";
 import { getAdminStats, listAllUsers } from "@/lib/fetch/fetchJobs";
-import React from "react";
+
+export const metadata = {
+  title: "Dashboard | WorkSphere",
+};
 
 const AdminPage = async () => {
   const { totalActiveJobs, totalCompanies, ongoingApplications } =

@@ -1,5 +1,8 @@
 import RecruiterSettings from "@/components/dashboard/recruiter/RecruiterSettings";
-import React from "react";
+
+export const metadata = {
+  title: "Settings | WorkSphere",
+};
 
 const SettingsPage = () => {
   return <RecruiterSettings />;

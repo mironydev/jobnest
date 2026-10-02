@@ -1,6 +1,10 @@
 import Companies from "@/components/dashboard/admin/companies/Companies";
 import { getCompanies } from "@/lib/fetch/fetchCompanies";
 
+export const metadata = {
+  title: "Companies | WorkSphere",
+};
+
 const CompaniesPage = async ({ searchParams }) => {
   const param = await searchParams;
   const query = new URLSearchParams(param);

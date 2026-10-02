@@ -13,7 +13,11 @@ const nunito = Nunito({
 
 export const metadata = {
   title: "WorkSphere",
-  description: "",
+  description:
+    "Find jobs, discover companies, and build your career with WorkSphere.",
+  verification: {
+    google: "PWJTiC7FmuW6AfGwBSJ0q7bzFWK9cbJatJ5pdLEtx6Q",
+  },
 };
 
 export default function RootLayout({ children }) {

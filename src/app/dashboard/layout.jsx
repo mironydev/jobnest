@@ -1,5 +1,12 @@
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 
+export const metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 const DashboardLayout = async ({ children }) => {
   return (
     <div className="mt-26 px-4 flex flex-col md:flex-row">

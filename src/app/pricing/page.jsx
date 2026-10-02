@@ -2,6 +2,12 @@ import { auth } from "@/lib/auth";
 import Pricing from "./Pricing";
 import { headers } from "next/headers";
 
+export const metadata = {
+  title: "Pricing | WorkSphere",
+  description:
+    "Explore WorkSphere pricing plans and choose the plan that fits your job search needs.",
+};
+
 const PricingPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),

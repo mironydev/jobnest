@@ -9,12 +9,9 @@ import {
   ArrowUpRightFromSquare,
 } from "@gravity-ui/icons";
 import Link from "next/link";
-import { currencySymbol, formatDate, useSessionClient } from "@/lib/helpers";
+import { currencySymbol, formatDate } from "@/lib/helpers";
 
-const JobDetails = ({ job, hasApplied, applicationId }) => {
-  const { user } = useSessionClient();
-  const userRole = user?.accountType;
-
+const JobDetails = ({ job, hasApplied, applicationId, userRole }) => {
   const {
     _id,
     benefits,
@@ -51,9 +48,7 @@ const JobDetails = ({ job, hasApplied, applicationId }) => {
             </div>
           </div>
 
-          {userRole === "recruiter" ? (
-            ""
-          ) : (
+          {userRole !== "recruiter" && userRole !== "admin" && (
             <Link
               href={
                 hasApplied
@@ -147,20 +142,24 @@ const JobDetails = ({ job, hasApplied, applicationId }) => {
             </section>
           )}
 
-          <div
-            className={`justify-center pt-2 ${userRole === "recruiter" ? "hidden" : "flex"}`}
-          >
-            <Link
-              href={
-                hasApplied
-                  ? `/dashboard/seeker/applications/${applicationId}`
-                  : `/jobs/${_id}/apply`
-              }
-              className={`${hasApplied ? "bg-foreground text-background" : "bg-indigo-600 hover:bg-indigo-700 text-white"} rounded-lg px-12 py-4 font-bold text-lg active:scale-95 duration-100`}
-            >
-              {hasApplied ? "View Application" : "Apply Now"}
-            </Link>
-          </div>
+          {userRole !== "recruiter" && userRole !== "admin" && (
+            <div className="flex justify-center pt-2">
+              <Link
+                href={
+                  hasApplied
+                    ? `/dashboard/seeker/applications/${applicationId}`
+                    : `/jobs/${_id}/apply`
+                }
+                className={`${
+                  hasApplied
+                    ? "bg-foreground text-background"
+                    : "bg-indigo-600 hover:bg-indigo-700 text-white"
+                } rounded-lg px-12 py-4 font-bold text-lg active:scale-95 duration-100`}
+              >
+                {hasApplied ? "View Application" : "Apply Now"}
+              </Link>
+            </div>
+          )}
         </div>
 
         {/*company details */}

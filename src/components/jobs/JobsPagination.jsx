@@ -20,6 +20,7 @@ const JobsPagination = ({ page, setPage, total }) => {
           <Pagination.Content className="flex-wrap">
             <Pagination.Item>
               <Pagination.Previous
+                aria-label="Previous page"
                 style={{ outline: "none", boxShadow: "none" }}
                 isDisabled={currentPage === 1}
                 onClick={() => setPage(Math.max(1, currentPage - 1))}
@@ -41,6 +42,7 @@ const JobsPagination = ({ page, setPage, total }) => {
             ))}
             <Pagination.Item>
               <Pagination.Next
+                aria-label="Next page"
                 style={{ outline: "none", boxShadow: "none" }}
                 isDisabled={currentPage === totalPages}
                 onClick={() => setPage(Math.min(totalPages, currentPage + 1))}

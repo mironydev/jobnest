@@ -3,6 +3,11 @@ import { getAllJobs, getSavedJobs } from "@/lib/fetch/fetchJobs";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
+export const metadata = {
+  title: "Find Jobs | WorkSphere",
+  description: "Search and discover jobs from companies hiring on WorkSphere.",
+};
+
 const JobsPage = async ({ searchParams }) => {
   const searchQuery = await searchParams;
   const query = new URLSearchParams(searchQuery);

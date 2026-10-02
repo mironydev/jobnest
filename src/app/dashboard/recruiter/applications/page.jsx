@@ -1,6 +1,10 @@
 import RecruiterApplications from "@/components/dashboard/recruiter/RecruiterApplications";
 import { getRecruiterApplications } from "@/lib/fetch/fetchApplications";
 
+export const metadata = {
+  title: "Applications | WorkSphere",
+};
+
 const ApplicationsPage = async () => {
   const applications = await getRecruiterApplications();
   return <RecruiterApplications applications={applications} />;

@@ -1,7 +1,4 @@
-"use client";
-
 import { FileText, MapPin, PencilToSquare } from "@gravity-ui/icons";
-import { useSessionClient } from "@/lib/helpers";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -11,9 +8,7 @@ const Empty = ({ children = "Not added" }) => (
   <span className="italic text-sm text-muted">{children}</span>
 );
 
-const SeekerProfileView = () => {
-  const { user } = useSessionClient();
-
+const SeekerProfileView = ({ user }) => {
   const skills =
     user?.skills
       ?.split(",")

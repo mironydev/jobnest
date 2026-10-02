@@ -1,5 +1,8 @@
 import Settings from "@/components/dashboard/admin/Settings";
-import React from "react";
+
+export const metadata = {
+  title: "Settings | WorkSphere",
+};
 
 const SettingsPage = () => {
   return (

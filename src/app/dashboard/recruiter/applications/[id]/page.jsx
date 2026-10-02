@@ -1,6 +1,9 @@
 import ApplicationDetails from "@/components/dashboard/seeker/ApplicationDetails";
 import { getApplicationDetails } from "@/lib/fetch/fetchApplications";
-import React from "react";
+
+export const metadata = {
+  title: "Application Details | WorkSphere",
+};
 
 const RecruiterApplicationDetailsPage = async ({ params }) => {
   const { id } = await params;

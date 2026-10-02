@@ -1,6 +1,9 @@
 import Jobs from "@/components/dashboard/admin/jobs/Jobs";
 import { getAllJobs } from "@/lib/fetch/fetchJobs";
-import React from "react";
+
+export const metadata = {
+  title: "Jobs | WorkSphere",
+};
 
 const JobsPage = async ({ searchParams }) => {
   const searchQuery = await searchParams;

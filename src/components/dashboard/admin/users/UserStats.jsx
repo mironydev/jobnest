@@ -53,7 +53,7 @@ const UserStats = ({ users, filteredUsers, setFilteredUsers }) => {
               percentageChange > 0
                 ? "text-emerald-500"
                 : percentageChange < 0
-                  ? "text-red-500"
+                  ? "text-rose-500"
                   : ""
             }`}
           >
