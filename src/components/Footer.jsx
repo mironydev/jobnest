@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
@@ -9,7 +8,7 @@ const Footer = () => {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold flex items-center justify-center lg:justify-start gap-2">
-              WorkSphere
+              JobNest
             </h2>
 
             <p className="mx-auto lg:mx-0 mt-4 text-gray-600 dark:text-gray-400 max-w-md">
@@ -24,8 +23,8 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-600 dark:text-gray-400">
               <li>
                 <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
+                  href="/jobs"
+                  className="hover:underline active:underline decoration-1 decoration-gray-600 dark:decoration-gray-400 transition-all"
                 >
                   Find Jobs
                 </Link>
@@ -33,28 +32,10 @@ const Footer = () => {
 
               <li>
                 <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
+                  href="/pricing"
+                  className="hover:underline active:underline decoration-1 decoration-gray-600 dark:decoration-gray-400 transition-all"
                 >
-                  Career Assistant
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
-                >
-                  Companies
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
-                >
-                  Salary Insights
+                  Pricing
                 </Link>
               </li>
             </ul>
@@ -62,37 +43,30 @@ const Footer = () => {
 
           <div>
             <h3 className="font-semibold text-foreground mb-4">Navigation</h3>
+
             <ul className="space-y-3 text-gray-600 dark:text-gray-400">
               <li>
                 <Link
                   href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
+                  className="hover:underline active:underline decoration-1 decoration-gray-600 dark:decoration-gray-400 transition-all"
                 >
                   Home
                 </Link>
               </li>
+
               <li>
                 <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
+                  href="/about"
+                  className="hover:underline active:underline decoration-1 decoration-gray-600 dark:decoration-gray-400 transition-all"
                 >
-                  Help Center
+                  About Us
                 </Link>
               </li>
 
               <li>
                 <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
-                >
-                  Career Library
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
+                  href="/contact"
+                  className="hover:underline active:underline decoration-1 decoration-gray-600 dark:decoration-gray-400 transition-all"
                 >
                   Contact
                 </Link>
@@ -101,27 +75,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Resources</h3>
-
-            <ul className="space-y-3 text-gray-600 dark:text-gray-400">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
-                >
-                  News
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-foreground active:opacity-70 transition-colors"
-                >
-                  Brand Guidelines
-                </Link>
-              </li>
-            </ul>
+            <h3 className="font-semibold text-foreground mb-4">Follow Us</h3>
 
             <div className="flex items-center justify-center lg:justify-start gap-3 mt-6">
               <Link
@@ -201,23 +155,23 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-foreground/10 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
-          <p>© {new Date().getFullYear()} WorkSphere</p>
+          <p>© {new Date().getFullYear()} JobNest</p>
 
           <div className="flex items-center gap-3">
             <Link
-              href="/"
-              className="hover:text-black dark:hover:text-white active:opacity-70 transition-colors"
+              href="/terms"
+              className="hover:underline active:underline decoration-1 decoration-gray-600 dark:decoration-gray-400 transition-all"
             >
-              Terms & Policy
+              Terms & Conditions
             </Link>
 
-            <span>•</span>
+            <span className="text-xs">•</span>
 
             <Link
-              href="/"
-              className="hover:text-black dark:hover:text-white active:opacity-70 transition-colors"
+              href="/privacy-policy"
+              className="hover:underline active:underline decoration-1 decoration-gray-600 dark:decoration-gray-400 transition-all"
             >
-              Privacy Guideline
+              Privacy Policy
             </Link>
           </div>
         </div>

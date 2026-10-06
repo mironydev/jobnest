@@ -1,9 +1,8 @@
 import JobDetails from "@/components/jobs/JobDetails";
 import { getJobDetails } from "@/lib/fetch/fetchJobs";
-import React from "react";
 
 export const metadata = {
-  title: "Job Details | WorkSphere",
+  title: "Job Details | JobNest",
 };
 
 const JobDetailsPage = async ({ params }) => {

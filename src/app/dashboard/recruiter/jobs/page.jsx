@@ -3,7 +3,7 @@ import React from "react";
 import RecruiterAllJobs from "@/components/dashboard/recruiter/RecruiterAllJobs";
 
 export const metadata = {
-  title: "Manage Jobs | WorkSphere",
+  title: "Manage Jobs | JobNest",
 };
 
 const RecruiterJobsPage = async ({ searchParams }) => {

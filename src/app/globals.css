@@ -16,11 +16,11 @@ input[type="number"]::-webkit-inner-spin-button {
 [class*="textarea"] {
   resize: none !important;
   overflow: auto !important;
-  scrollbar-width: none !important; /* Firefox */
+  scrollbar-width: none !important;
 }
 
 [class*="textarea"]::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Edge */
+  display: none !important;
 }
 
 @layer components {
@@ -35,5 +35,48 @@ input[type="number"]::-webkit-inner-spin-button {
       rgb(255 255 255 / 0.12),
       transparent
     ) !important;
+  }
+}
+
+.toast {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 16px;
+  padding: 8px 16px 8px 12px;
+}
+
+@media (max-width: 639px) {
+  .toast {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@layer components {
+
+    .toast--success .toast__title {
+    color: #159845;
+  }
+  .dark .toast--success .toast__title {
+    color: #4ADE80;
+  }
+  .toast--success .toast__indicator {
+    color: #159845;
+  }
+  .dark .toast--success .toast__indicator {
+    color: #4ADE80;
+  }
+
+    .toast--danger .toast__title {
+    color: #EF4444;
+  }
+  .dark .toast--danger .toast__title {
+    color: #F87171;
+  }
+  .toast--danger .toast__indicator {
+    color: #EF4444;
+  }
+  .dark .toast--danger .toast__indicator {
+    color: #F87171;
   }
 }

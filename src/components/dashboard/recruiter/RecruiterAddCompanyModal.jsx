@@ -13,10 +13,10 @@ import {
   Select,
   Form,
   FieldError,
+  toast,
 } from "@heroui/react";
 import { createCompany } from "@/lib/actions/company";
 import { useSession } from "@/lib/auth-client";
-import { toast } from "sonner";
 import ImageUpload from "./ImageUpload";
 import { Plus } from "lucide-react";
 
@@ -44,7 +44,7 @@ const RecruiterAddCompanyModal = () => {
       setIsOpen(false);
       setLogoUrl("");
     } else {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     }
   };
 
@@ -70,7 +70,7 @@ const RecruiterAddCompanyModal = () => {
                     Register New Company
                   </Modal.Heading>
                   <p className="-mt-2 -mb-1 text-sm leading-5 text-muted">
-                    Enter your business details to start hiring on WorkSphere.
+                    Enter your business details to start hiring on JobNest.
                   </p>
                 </Modal.Header>
                 <Modal.Body className="overflow-y-auto flex-1 ">

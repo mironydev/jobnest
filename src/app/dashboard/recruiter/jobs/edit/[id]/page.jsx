@@ -2,7 +2,7 @@ import RecruiterEditJob from "@/components/dashboard/recruiter/RecruiterEditJob"
 import { getJobDetails } from "@/lib/fetch/fetchJobs";
 
 export const metadata = {
-  title: "Edit Job | WorkSphere",
+  title: "Edit Job | JobNest",
 };
 
 const RecruiterEditJobPage = async ({ params }) => {

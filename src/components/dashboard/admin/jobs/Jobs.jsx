@@ -7,6 +7,7 @@ import {
   Modal,
   Pagination,
   Separator,
+  toast,
 } from "@heroui/react";
 import { capitalize, formatDate } from "@/lib/helpers";
 import { EllipsisVertical } from "lucide-react";
@@ -14,7 +15,6 @@ import { useState } from "react";
 import Stats from "./Stats";
 import { useRouter, useSearchParams } from "next/navigation";
 import { deleteJob } from "@/lib/actions/jobs";
-import { toast } from "sonner";
 
 const Jobs = ({ jobs, total, count, active, addedThisMonth }) => {
   const [job, setJob] = useState(null);

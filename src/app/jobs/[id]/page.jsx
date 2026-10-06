@@ -10,22 +10,31 @@ export async function generateMetadata({ params }) {
   const job = await getJobDetails(id);
 
   return {
-    title: `${job.jobTitle} | WorkSphere`,
-    description: `Apply for the ${job.jobTitle} position at ${job.company?.companyName || "WorkSphere"}.`,
+    title: `${job.jobTitle} | JobNest`,
+    description: `Apply for the ${job.jobTitle} position at ${job.company?.companyName || "JobNest"}.`,
   };
 }
 
 const JobsDetailsPage = async ({ params }) => {
   const { id } = await params;
+
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   const user = session?.user;
   const job = await getJobDetails(id);
-  const applications = await getApplications(user?.id);
-  const application = applications.find((a) => a.job.id === id);
-  const hasApplied = !!application;
-  const applicationId = application?._id;
+
+  let hasApplied = false;
+  let applicationId;
+
+  if (user) {
+    const applications = await getApplications(user.id);
+    const application = applications.find((a) => a.job.id === id);
+
+    hasApplied = !!application;
+    applicationId = application?._id;
+  }
 
   return (
     <div className="mt-26 px-4">

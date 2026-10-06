@@ -9,9 +9,8 @@ import {
 } from "@gravity-ui/icons";
 import { ArrowUpRight, FileText, Globe } from "lucide-react";
 import { capitalize, formatDate, useSessionClient } from "@/lib/helpers";
-import { Chip, ListBox, Select } from "@heroui/react";
+import { Chip, ListBox, Select, toast } from "@heroui/react";
 import { updateApplicationStatus } from "@/lib/actions/application";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
@@ -66,10 +65,10 @@ const ApplicationDetails = ({ application }) => {
         toast.success(`Status updated to ${capitalize(newStatus)}`);
         router.refresh();
       } else {
-        toast.error("Failed to update status");
+        toast.danger("Failed to update status");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     } finally {
       setUpdatingId(null);
     }
@@ -85,7 +84,7 @@ const ApplicationDetails = ({ application }) => {
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text- text-muted">
-              {application.company.name || (
+              {application.companyName || (
                 <span className="italic opacity-60">Not available</span>
               )}
             </p>
@@ -166,11 +165,11 @@ const ApplicationDetails = ({ application }) => {
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-muted mb-1">Name</p>
-                <p className="font-medium">{application.user.name}</p>
+                <p className="font-medium">{application.applicant.name}</p>
               </div>
               <div>
                 <p className="text-sm text-muted mb-1">Email</p>
-                <p className="font-medium">{application.user.email}</p>
+                <p className="font-medium">{application.applicant.email}</p>
               </div>
               <div>
                 <p className="text-sm text-muted mb-1">Phone</p>

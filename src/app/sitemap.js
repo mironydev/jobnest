@@ -6,7 +6,15 @@ export default async function sitemap() {
   const jobsData = await getAllJobs("itemsPerPage=1000");
   const jobs = jobsData.jobs || [];
 
-  const staticPages = ["", "/jobs", "/pricing"];
+  const staticPages = [
+    "",
+    "/jobs",
+    "/pricing",
+    "/about",
+    "/contact",
+    "/privacy-policy",
+    "/terms",
+  ];
 
   const jobPages = jobs.map((job) => `/jobs/${job._id}`);
 

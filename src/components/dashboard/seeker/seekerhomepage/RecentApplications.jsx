@@ -77,7 +77,7 @@ const RecentApplications = ({ applications }) => {
                   <div>
                     <p className="font-semibold text-sm">{app.job.title}</p>
                     <div className="flex items-center gap-2 mt-0.5">
-                      <p className="text-xs text-muted">{app.company.name}</p>
+                      <p className="text-xs text-muted">{app.companyName}</p>
                       <span className="text-muted text-xs">•</span>
                       <p className="text-xs text-muted text-nowrap">
                         {formatDate(app.createdAt)}

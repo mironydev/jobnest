@@ -9,9 +9,9 @@ import {
   Label,
   TextArea,
   TextField,
+  toast,
 } from "@heroui/react";
 import { Check } from "@gravity-ui/icons";
-import { toast } from "sonner";
 import { submitApplication } from "@/lib/actions/application";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -26,7 +26,7 @@ const Apply = ({ job, user, totalApplications, plan }) => {
     const formData = new FormData(e.currentTarget);
     const applicationData = Object.fromEntries(formData.entries());
 
-    applicationData.user = {
+    applicationData.applicant = {
       id,
       name,
       email,
@@ -37,10 +37,7 @@ const Apply = ({ job, user, totalApplications, plan }) => {
       title: jobTitle,
     };
 
-    applicationData.company = {
-      name: job.company.companyName,
-      url: job.company.url,
-    };
+    applicationData.companyName = job.company.companyName;
 
     applicationData.status = "applied";
     const res = await submitApplication(applicationData);
@@ -48,12 +45,12 @@ const Apply = ({ job, user, totalApplications, plan }) => {
       toast.success("Application submitted!");
       router.push("/jobs");
     } else {
-      toast.error("Failed to submit application");
+      toast.danger("Failed to submit application");
     }
   };
 
   const inputClassName =
-    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black placeholder:text-foreground/40";
+    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black/50 placeholder:text-foreground/40";
 
   if (totalApplications >= plan.maxApplicationsPerMonth) {
     return (
@@ -104,25 +101,18 @@ const Apply = ({ job, user, totalApplications, plan }) => {
         <p className="text-muted mt-1">{job.company.companyName}</p>
       </div>
 
-      <div className="rounded-xl bg-white dark:bg-foreground/5 border">
+      <div className="rounded-xl bg-white dark:bg-foreground/7 border">
         <div className="p-6 sm:p-8">
-          <div className="mb-8">
-            <div className="flex justify-between">
-              <h2 className="text-xl font-semibold">Application</h2>
-              {plan.name === "seeker_starter" && (
-                <p className="text-xs text-muted whitespace-nowrap h-fit bg-foreground/3 px-2 py-0.5 rounded-full">
-                  Applications left:{" "}
-                  <span className="font-semibold">
-                    {plan.maxApplicationsPerMonth - totalApplications} /{" "}
-                    {plan.maxApplicationsPerMonth}
-                  </span>
-                </p>
-              )}
-            </div>
-
-            <p className="text-sm text-muted mt-1">
-              Submit your application for this position.
-            </p>
+          <div className="mb-4 w-fit">
+            {plan.name === "seeker_starter" && (
+              <p className="text-xs text-muted whitespace-nowrap h-fit bg-foreground/3 px-2 py-0.5 rounded-full">
+                Applications left:{" "}
+                <span className="font-semibold">
+                  {plan.maxApplicationsPerMonth - totalApplications} /{" "}
+                  {plan.maxApplicationsPerMonth}
+                </span>
+              </p>
+            )}
           </div>
 
           <div className="mb-8 p-4 bg-foreground/1 dark:bg-foreground/3 rounded-lg border">
@@ -334,10 +324,11 @@ const Apply = ({ job, user, totalApplications, plan }) => {
               </TextField>
             </section>
 
-            <div className="flex justify-end gap-3 pt-6 border-t border-foreground/10">
+            <div className="text-center pt-6 border-t border-foreground/10">
               <Button
                 type="submit"
-                className="w-full sm:w-fit bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-600 rounded-lg py-5 pr-6 text-base"
+                className="w-full sm:w-fit bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-600 rounded-lg py-6 pl-8 pr-10 text-base"
+                style={{ boxShadow: "none" }}
               >
                 <Check />
                 Submit Application

@@ -9,12 +9,15 @@ import {
   Label,
   Pagination,
   Modal,
+  toast,
+  SearchField,
+  Select,
+  ListBox,
 } from "@heroui/react";
 import Link from "next/link";
 import React, { useState } from "react";
-import { toast } from "sonner";
 import { capitalize, formatDate } from "@/lib/helpers";
-import { Eye, EyeOff, Plus, Trash2 } from "lucide-react";
+import { ArrowDownUp, Eye, EyeOff, Plus, Trash2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const RecruiterAllJobs = ({ jobsData }) => {
@@ -28,6 +31,35 @@ const RecruiterAllJobs = ({ jobsData }) => {
   const [jobToPause, setJobToPause] = useState(null);
   const [isPausing, setIsPausing] = useState(false);
   const [isPauseDialogOpen, setIsPauseDialogOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // console.log(searchQuery);
+
+  const stats = [
+    {
+      title: "Total Jobs",
+      value: 0,
+    },
+    {
+      title: "Active Jobs",
+      value: 0,
+    },
+    {
+      title: "Inactive Jobs",
+      value: 0,
+    },
+    {
+      title: "Applications",
+      value: 0,
+    },
+  ];
+
+  const sortOptions = [
+    { value: "newest", label: "Newest" },
+    { value: "oldest", label: "Oldest" },
+    { value: "name-asc", label: "Name (A-Z)" },
+    { value: "name-desc", label: "Name (Z-A)" },
+  ];
 
   const startIndex = (currentPage - 1) * limit;
   const start = startIndex + 1;
@@ -64,12 +96,12 @@ const RecruiterAllJobs = ({ jobsData }) => {
       setIsDeleting(true);
       const res = await deleteJob(jobToDelete._id);
       if (res.deletedCount) {
-        toast.success("Job Deleted");
+        toast.danger("Job Deleted");
       } else {
-        toast.error("Something went wrong");
+        toast.danger("Something went wrong");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     } finally {
       setIsDeleting(false);
       setIsDeleteDialogOpen(false);
@@ -88,15 +120,19 @@ const RecruiterAllJobs = ({ jobsData }) => {
         );
         router.refresh();
       } else {
-        toast.error("Something went wrong");
+        toast.danger("Something went wrong");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     } finally {
       setIsPausing(false);
       setIsPauseDialogOpen(false);
       setJobToPause(null);
     }
+  };
+
+  const handleSortChange = (newSort) => {
+    // console.log(newSort);
   };
 
   return (
@@ -116,6 +152,87 @@ const RecruiterAllJobs = ({ jobsData }) => {
           <Plus size={15} />
           <span>Add a Job</span>
         </Link>
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 mt-4 gap-4">
+        {stats.map((stat, i) => (
+          <div
+            key={i}
+            className="flex flex-col justify-between gap-3 bg-white dark:bg-foreground/5 rounded-lg p-4 border"
+          >
+            <p className="text-xs opacity-70 overflow-hidden">{stat.title}</p>
+            <p className="text-3xl font-medium overflow-hidden leading-none">
+              {stat.value}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 mb-4 flex justify-between gap-2">
+        {/* search */}
+        <SearchField
+          aria-label="Search"
+          name="search"
+          className="relative sm:w-full sm:max-w-72"
+          value={searchQuery}
+          onChange={(value) => setSearchQuery(value)}
+        >
+          <SearchField.Group
+            className="h-10 rounded-sm border border-foreground/15 shadow-none focus-within:border-foreground/50 dark:border-transparent dark:bg-foreground/10 dark:focus-within:border-foreground/10"
+            style={{ boxShadow: "none" }}
+          >
+            {" "}
+            <SearchField.SearchIcon />
+            <SearchField.Input
+              placeholder="Search companies..."
+              className="w-full text-sm"
+            />
+            <SearchField.ClearButton />
+          </SearchField.Group>
+        </SearchField>
+
+        {/* sort */}
+        <Select
+          className="sm:min-w-32"
+          placeholder="Sort by"
+          aria-label="Sort jobs"
+          onChange={handleSortChange}
+        >
+          <Select.Trigger
+            className="group rounded-sm border border-foreground/15 focus-within:border-foreground/50 dark:border-transparent dark:bg-foreground/10 dark:focus-within:border-transparent"
+            style={{ boxShadow: "none" }}
+          >
+            <span className="sm:hidden">
+              <ArrowDownUp
+                size={22}
+                className="p-0.5 opacity-50 group-focus-within:opacity-100"
+              />
+            </span>
+
+            <span className="hidden sm:block">
+              <Select.Value />
+            </span>
+
+            <Select.Indicator />
+          </Select.Trigger>
+
+          <Select.Popover className="rounded-md">
+            <ListBox>
+              {sortOptions.map((option) => (
+                <ListBox.Item
+                  className="rounded-md text-nowrap pr-7"
+                  style={{ boxShadow: "none" }}
+                  key={option.value}
+                  id={option.value}
+                  textValue={option.label}
+                >
+                  {option.label}
+                  <ListBox.ItemIndicator />
+                </ListBox.Item>
+              ))}
+            </ListBox>
+          </Select.Popover>
+        </Select>
       </div>
       <div className="mt-4">
         <div className="overflow-x-auto rounded-t-lg dark:bg-foreground/3 border">

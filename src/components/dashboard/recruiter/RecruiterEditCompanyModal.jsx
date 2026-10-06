@@ -13,9 +13,9 @@ import {
   TextArea,
   TextField,
   Select,
+  toast,
 } from "@heroui/react";
 import { useState } from "react";
-import { toast } from "sonner";
 import ImageUpload from "./ImageUpload";
 import { useRouter } from "next/navigation";
 
@@ -56,7 +56,7 @@ const RecruiterEditCompanyModal = ({ company, onClose }) => {
       onClose();
       router.refresh();
     } else {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     }
   };
 

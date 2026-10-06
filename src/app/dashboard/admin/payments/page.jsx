@@ -1,7 +1,7 @@
 import Payments from "@/components/dashboard/admin/Payments";
 
 export const metadata = {
-  title: "Payments | WorkSphere",
+  title: "Payments | JobNest",
 };
 
 const PaymentsPage = () => {

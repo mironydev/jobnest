@@ -1,15 +1,12 @@
 "use client";
 
-import { useSessionClient } from "@/lib/helpers";
 import Stats from "./Stats";
 import Profile from "./Profile";
 import ApplicationStatus from "./ApplicationStatus";
 import RecentApplications from "./RecentApplications";
 import RecentActivity from "./RecentActivity";
 
-const SeekerHomepage = ({ applications, savedJobsCount }) => {
-  const { user } = useSessionClient();
-
+const SeekerHomepage = ({ applications, savedJobsCount, user }) => {
   return (
     <div>
       <h1 className="text-3xl font-medium">
@@ -19,9 +16,9 @@ const SeekerHomepage = ({ applications, savedJobsCount }) => {
         View and manage everything from your dashboard
       </p>
       <Stats savedJobsCount={savedJobsCount} applications={applications} />
-      <div className="flex flex-wrap justify-between gap-3 mt-5">
+      <div className="flex flex-wrap justify-between gap-5 sm:gap-3 my-5">
         <RecentApplications applications={applications} />
-        <Profile />
+        <Profile user={user} />
         <ApplicationStatus applications={applications} />
       </div>
       <RecentActivity />

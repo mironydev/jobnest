@@ -1,10 +1,11 @@
 import { Nunito } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "./providers";
-import { Toaster } from "sonner";
 import DashboardDrawer from "@/components/dashboard/DashboardDrawer";
+import { Toast } from "@heroui/react";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -12,9 +13,11 @@ const nunito = Nunito({
 });
 
 export const metadata = {
-  title: "WorkSphere",
+  metadataBase: new URL(process.env.BASE_URL),
+
+  title: "JobNest | Find Jobs & Career Opportunities",
   description:
-    "Find jobs, discover companies, and build your career with WorkSphere.",
+    "JobNest is a job search platform where you can find jobs, discover companies, save opportunities, and apply for your next career opportunity.",
   verification: {
     google: "PWJTiC7FmuW6AfGwBSJ0q7bzFWK9cbJatJ5pdLEtx6Q",
   },
@@ -33,19 +36,31 @@ export default function RootLayout({ children }) {
           <DashboardDrawer />
           <main className="max-w-7xl mx-auto">{children}</main>
           <Footer />
-          <Toaster
-            position="bottom-right"
-            richColors
-            gap={12}
-            visibleToasts={3}
-            toastOptions={{
-              duration: 3000,
-              style: {
-                pointerEvents: "none", // disables hover interaction
-              },
-            }}
-          />
+          <Toast.Provider placement="bottom end" width="100%" />
         </Providers>
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-F71GQCL159"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-F71GQCL159');
+          `}
+        </Script>
+
+        <Script id="website-schema" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "JobNest",
+            url: "https://jobnest-x.vercel.app",
+          })}
+        </Script>
       </body>
     </html>
   );

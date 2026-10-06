@@ -3,7 +3,7 @@ import { getApplicationDetails } from "@/lib/fetch/fetchApplications";
 import React from "react";
 
 export const metadata = {
-  title: "Application Details | WorkSphere",
+  title: "Application Details | JobNest",
 };
 
 const ApplicationDetailsPage = async ({ params }) => {

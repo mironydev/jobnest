@@ -1,6 +1,6 @@
 "use client";
 
-import { Dropdown, Label, Separator } from "@heroui/react";
+import { Dropdown, Label, Separator, toast } from "@heroui/react";
 import {
   EllipsisVertical,
   Bookmark,
@@ -10,16 +10,17 @@ import {
   EyeOff,
   AlertCircle,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useSessionClient } from "@/lib/helpers";
-import { toast } from "sonner";
 import { removeSavedJob, saveJob } from "@/lib/actions/jobs";
 export const JobCardMenu = ({ job, savedJobs }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { user } = useSessionClient();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
 
   const handleAction = async (key) => {
     switch (key) {
@@ -43,7 +44,7 @@ export const JobCardMenu = ({ job, savedJobs }) => {
 
   const handleToggleSaveJob = async () => {
     if (!user) {
-      router.push("/login");
+      router.push(`/login?redirect=jobs?page=${page}`);
       return;
     }
 
@@ -68,7 +69,7 @@ export const JobCardMenu = ({ job, savedJobs }) => {
         toast.success("Job saved");
       }
     } catch (error) {
-      toast.error("Failed to save/remove job");
+      toast.danger("Failed to save/remove job");
     } finally {
       setIsLoading(false);
     }

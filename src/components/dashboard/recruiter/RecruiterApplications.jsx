@@ -3,9 +3,8 @@
 import { useState } from "react";
 import { capitalize, formatDate } from "@/lib/helpers";
 import { FileLetterX } from "@gravity-ui/icons";
-import { ListBox, Select } from "@heroui/react";
+import { ListBox, Select, toast } from "@heroui/react";
 import Link from "next/link";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { updateApplicationStatus } from "@/lib/actions/application";
 import { MoveUpRight } from "lucide-react";
@@ -33,10 +32,10 @@ const RecruiterApplications = ({ applications }) => {
         toast.success(`Status updated to ${capitalize(newStatus)}`);
         router.refresh();
       } else {
-        toast.error("Failed to update status");
+        toast.danger("Failed to update status");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     } finally {
       setUpdatingId(null);
     }
@@ -112,7 +111,7 @@ const RecruiterApplications = ({ applications }) => {
 
                   <td className="px-4 py-3 text-nowrap">
                     <p className="font-medium">
-                      {app.user.name || "Not found"}
+                      {app.applicant.name || "Not found"}
                     </p>
                   </td>
 

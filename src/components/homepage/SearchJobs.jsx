@@ -32,7 +32,7 @@ const SearchJobs = () => {
           <span>
             <Briefcase />
           </span>
-          <span className="font-bold">10,000+</span>
+          <span className="font-bold">1,000+</span>
           <span className="opacity-70 font-medium">NEW JOBS THIS MONTH</span>
         </p>
       </motion.div>
@@ -53,8 +53,9 @@ const SearchJobs = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="max-w-2xl mx-auto"
       >
-        WorkSphere helps you find and apply to jobs from top companies. Explore
-        thousands of opportunities and move faster in your career.
+        JobNest is a job search platform where you can find jobs, discover
+        companies, save opportunities, and apply for your next career
+        opportunity.
       </motion.p>
 
       <motion.form
@@ -107,7 +108,7 @@ const SearchJobs = () => {
                 whileHover={{
                   y: -2,
                 }}
-                className="bg-white/80 dark:bg-foreground/5 py-1.5 px-4 rounded-full border-t border-foreground/5 text-sm sm:text-base dark:border dark:border-white/20 shadow-xs cursor-default"
+                className="bg-white dark:bg-foreground/5 py-1.5 px-4 rounded-full border-t border-foreground/5 text-sm sm:text-base dark:border dark:border-white/20 shadow-xs cursor-default"
               >
                 {position}
               </motion.p>

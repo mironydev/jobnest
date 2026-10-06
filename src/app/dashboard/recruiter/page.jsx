@@ -2,7 +2,7 @@ import RecruiterHomepage from "@/components/dashboard/recruiter/RecruiterHomepag
 import { getRecruiterStats } from "@/lib/fetch/fetchRecruiterStats";
 
 export const metadata = {
-  title: "Dashboard | WorkSphere",
+  title: "Dashboard | JobNest",
 };
 
 const RecruiterPage = async () => {

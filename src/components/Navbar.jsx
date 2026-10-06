@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Avatar, Spinner, Tooltip, Skeleton } from "@heroui/react";
+import { Avatar, Spinner, Tooltip, Skeleton, toast } from "@heroui/react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { signOut } from "@/lib/auth-client";
 import { ArrowRightFromSquare } from "@gravity-ui/icons";
-import { toast } from "sonner";
+
 import { usePathname, useRouter } from "next/navigation";
 import { useDashboardMenu } from "@/app/providers";
 import { useSessionClient } from "@/lib/helpers";
@@ -33,15 +33,15 @@ export default function Navbar() {
       toast.success("Logout successful");
       router.push("/login");
     } else {
-      toast.error("Couldn't log out, something went wrong.");
+      toast.danger("Couldn't log out, something went wrong.");
     }
   };
 
   return (
     <>
       <div className="p-4 fixed w-full top-0 z-40">
-        <nav className=" w-full bg-white/70 dark:bg-background/50 backdrop-blur-lg max-w-6xl mx-auto rounded-lg border-t dark:border border-foreground/7 dark:border-foreground/15 shadow-[0_1px_2px_rgba(0,0,0,0.06)]">
-          <header className="flex p-3 md:px-5 sm:py-0 sm:h-16 gap-3 items-center justify-between">
+        <nav className="w-full bg-white/70 dark:bg-background/50 backdrop-blur-lg max-w-6xl mx-auto rounded-lg border border-foreground/10 dark:border-foreground/15">
+          <header className="flex h-14 px-3 sm:px-4 gap-3 items-center justify-between">
             <div className="flex items-center gap-3">
               {!user ? (
                 <button
@@ -98,7 +98,15 @@ export default function Navbar() {
               )}
 
               <Link
-                href="/"
+                href={
+                  !user
+                    ? "/"
+                    : user.accountType === "seeker"
+                      ? "/dashboard/seeker"
+                      : user.accountType === "recruiter"
+                        ? "/dashboard/recruiter"
+                        : "/dashboard/admin"
+                }
                 className="flex items-center gap-3"
                 style={{
                   boxShadow: "none",
@@ -117,9 +125,7 @@ export default function Navbar() {
                     d="M149.078 0a44.2 44.2 0 0 0-12.137 12.95l-.575.963l-10.844 18.766l-45.14 78.256l42.755 73.9l-10.834 18.776c-8.692 15.106-26.867 21.938-43.357 16.298c-8.41-2.806-15.229-8.964-19.833-16.536l-.468-.788l-44.892-77.737C1.276 120.66 0 115.798 0 110.935a27.44 27.44 0 0 1 3.305-13.107l.448-.797l46.168-79.966C55.844 6.72 66.757.285 78.653.01l.795-.01zm14.329 1.96c16.235-5.47 34.053 1.05 42.946 15.61l.41.688l45.484 78.763c2.477 4.179 3.753 9.05 3.753 13.914c0 4.558-1.121 9.117-3.303 13.112l-.45.791l-46.168 79.966c-5.923 10.345-16.836 16.781-28.732 17.056l-.795.009h-69.63c4.802-3.44 8.929-7.783 12.092-12.883l.62-1.03l10.844-18.776l45.14-78.245l-42.755-73.994l10.243-17.657c4.603-7.94 11.61-14.421 20.3-17.324"
                   ></path>
                 </svg>
-                <p className="font-extrabold text-2xl md:text-2xl">
-                  WorkSphere
-                </p>
+                <p className="font-extrabold text-2xl md:text-2xl">JobNest</p>
               </Link>
             </div>
 
@@ -277,14 +283,14 @@ export default function Navbar() {
                 <div className="flex min-w-0 shrink items-center gap-3 sm:gap-6">
                   <Link
                     href="/login"
-                    className="hidden sm:block px-2 py-1.5 active:text-indigo-500 font-semibold"
+                    className="hidden sm:block px-3 py-1.25 font-semibold hover:text-stone-700 dark:hover:text-stone-200 hover:bg-foreground/5 dark:hover:bg-foreground/8 duration-150 rounded-md"
                   >
                     Log in
                   </Link>
 
                   <Link
                     href="/signup"
-                    className="hidden sm:block rounded-md bg-indigo-600 font-semibold px-4 py-1.25  text-white  active:opacity-80"
+                    className={`hidden sm:block rounded-md ${pathname.startsWith("/jobs/") ? "bg-foreground/70 dark:bg-foreground/90 text-background" : "bg-indigo-600 text-white"} font-semibold px-4 py-1.25 active:opacity-80 duration-300`}
                   >
                     Sign Up
                   </Link>
@@ -303,7 +309,7 @@ export default function Navbar() {
             className={`md:hidden grid transition-[grid-template-rows] duration-150 ease-in-out ${
               isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
             }`}
-            inert={!isMenuOpen ? "" : undefined}
+            inert={!isMenuOpen}
           >
             <div className="overflow-hidden">
               <div className="border-t border-separator">

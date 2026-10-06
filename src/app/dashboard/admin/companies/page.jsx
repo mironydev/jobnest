@@ -2,7 +2,7 @@ import Companies from "@/components/dashboard/admin/companies/Companies";
 import { getCompanies } from "@/lib/fetch/fetchCompanies";
 
 export const metadata = {
-  title: "Companies | WorkSphere",
+  title: "Companies | JobNest",
 };
 
 const CompaniesPage = async ({ searchParams }) => {

@@ -1,7 +1,7 @@
 import Settings from "@/components/dashboard/admin/Settings";
 
 export const metadata = {
-  title: "Settings | WorkSphere",
+  title: "Settings | JobNest",
 };
 
 const SettingsPage = () => {

@@ -153,7 +153,7 @@ const RecruiterHomepage = ({
 
                       <td className="px-4 py-3 text-nowrap">
                         <p className="font-medium">
-                          {app.user.name || "Not found"}
+                          {app.applicant.name || "Not found"}
                         </p>
                       </td>
 

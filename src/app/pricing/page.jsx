@@ -3,9 +3,9 @@ import Pricing from "./Pricing";
 import { headers } from "next/headers";
 
 export const metadata = {
-  title: "Pricing | WorkSphere",
+  title: "Pricing | JobNest",
   description:
-    "Explore WorkSphere pricing plans and choose the plan that fits your job search needs.",
+    "Explore JobNest pricing plans and choose the plan that fits your job search needs.",
 };
 
 const PricingPage = async () => {

@@ -23,9 +23,16 @@ export const getJobDetails = async (jobId) => {
   return res.json();
 };
 
-export const getSavedJobs = async (userId, sortQuery) => {
+export const getSavedJobs = async (
+  userId,
+  sortQuery = "newest",
+  searchQuery = "",
+) => {
   const res = await fetch(
-    `${url}/savedjobs?userId=${userId}&sortby=${sortQuery}`,
+    `${url}/savedjobs?userId=${userId}&sortby=${sortQuery}&searchQuery=${searchQuery}`,
+    {
+      headers: await authHeader(),
+    },
   );
   return res.json();
 };

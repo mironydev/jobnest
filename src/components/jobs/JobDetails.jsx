@@ -51,9 +51,11 @@ const JobDetails = ({ job, hasApplied, applicationId, userRole }) => {
           {userRole !== "recruiter" && userRole !== "admin" && (
             <Link
               href={
-                hasApplied
-                  ? `/dashboard/seeker/applications/${applicationId}`
-                  : `/jobs/${_id}/apply`
+                !userRole
+                  ? `/login?redirect=jobs/${_id}/apply`
+                  : hasApplied
+                    ? `/dashboard/seeker/applications/${applicationId}`
+                    : `/jobs/${_id}/apply`
               }
               className={`hidden sm:block text-center ${hasApplied ? "bg-foreground text-background" : "bg-indigo-600 hover:bg-indigo-700 text-white"} dark:font-medium rounded-md px-4 py-2 active:scale-95 duration-100`}
             >
@@ -146,9 +148,11 @@ const JobDetails = ({ job, hasApplied, applicationId, userRole }) => {
             <div className="flex justify-center pt-2">
               <Link
                 href={
-                  hasApplied
-                    ? `/dashboard/seeker/applications/${applicationId}`
-                    : `/jobs/${_id}/apply`
+                  !userRole
+                    ? `/login?redirect=jobs/${_id}/apply`
+                    : hasApplied
+                      ? `/dashboard/seeker/applications/${applicationId}`
+                      : `/jobs/${_id}/apply`
                 }
                 className={`${
                   hasApplied

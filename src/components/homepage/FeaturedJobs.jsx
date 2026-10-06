@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Button } from "@heroui/react";
+import { Avatar } from "@heroui/react";
 import React from "react";
 import {
   ArrowUpRight,
@@ -9,25 +9,26 @@ import {
   CircleDollar,
 } from "@gravity-ui/icons";
 import Link from "next/link";
-import { capitalize, currencySymbol, truncate } from "@/lib/helpers";
+import { capitalize, currencySymbol } from "@/lib/helpers";
 
 const FeaturedJobs = ({ jobs }) => {
   return (
     <div className="px-4">
       <div className="text-center space-y-2">
-        <div className="flex justify-center items-center gap-3">
-          <span className="bg-indigo-500 h-2 w-2 rounded-xs"></span>
-          <p className="text-lg text-stone-500 dark:text-stone-300">
+        <div className="flex justify-center items-center gap-3 mb-3">
+          <span className="bg-indigo-500 h-1.5 w-1.5 rounded-xs"></span>
+          <p className="text-sm font-semibold tracking-widest text-foreground/70">
             FEATURED JOBS
           </p>
-          <span className="bg-indigo-500 h-2 w-2 rounded-xs"></span>
+          <span className="bg-indigo-500 h-1.5 w-1.5 rounded-xs"></span>
         </div>
+
         <h2 className="text-4xl font-semibold max-w-2xl mx-auto">
           Discover Jobs That Match Your Skills
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-12 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-12 mb-5 max-w-280 mx-auto">
         {jobs.map((job) => {
           return (
             <div
@@ -37,7 +38,7 @@ const FeaturedJobs = ({ jobs }) => {
               <div>
                 <div className="flex justify-between items-start">
                   <div className="flex items-center gap-2 mb-3">
-                    <Avatar size="sm" className="rounded-lg bg-transparent">
+                    <Avatar className="h-7 w-7 rounded-lg bg-transparent">
                       <Avatar.Image
                         alt={job.company.companyName}
                         src={job.company.logo}
@@ -49,10 +50,8 @@ const FeaturedJobs = ({ jobs }) => {
                     <p>{job.company.companyName}</p>
                   </div>
                 </div>
-                <h3 className="text-3xl">{job.jobTitle}</h3>
-                <p className="text-stone-600 dark:text-stone-300 mt-3">
-                  {truncate(job.responsibilities, 80)}
-                </p>
+                <h3 className="text-2xl">{job.jobTitle}</h3>
+
                 <div className="flex flex-wrap gap-1 space-y-0.5 my-6 text-xs">
                   {
                     <div className="border dark:border-foreground/15 px-2.5 py-1.5 rounded-full flex items-center gap-1">
@@ -90,7 +89,7 @@ const FeaturedJobs = ({ jobs }) => {
               </div>
               <Link
                 href={`/jobs/${job._id}`}
-                className="w-fit flex items-center gap-1 hover:bg-foreground/5 active:bg-foreground/5 px-4 py-2 rounded-full text-sm active:scale-95 duration-100"
+                className="w-fit flex items-center gap-1 hover:bg-foreground/5 active:bg-foreground/5 px-4 py-2 rounded-full text-sm active:scale-95 duration-100 -ml-3 hover:ml-0"
               >
                 Apply Now <ArrowUpRight />
               </Link>

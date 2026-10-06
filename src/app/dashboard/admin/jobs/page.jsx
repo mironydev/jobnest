@@ -2,7 +2,7 @@ import Jobs from "@/components/dashboard/admin/jobs/Jobs";
 import { getAllJobs } from "@/lib/fetch/fetchJobs";
 
 export const metadata = {
-  title: "Jobs | WorkSphere",
+  title: "Jobs | JobNest",
 };
 
 const JobsPage = async ({ searchParams }) => {

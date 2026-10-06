@@ -62,7 +62,7 @@ const RecentActivity = () => {
   };
 
   return (
-    <div className="rounded-lg overflow-hidden mt-6 border">
+    <div className="rounded-lg overflow-hidden border">
       {/* Header */}
       <div className="bg-white/80 dark:bg-foreground/5 p-6 border-b border-foreground/10 flex justify-between items-center">
         <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">

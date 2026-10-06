@@ -2,7 +2,7 @@ import Users from "@/components/dashboard/admin/users/Users";
 import { getPlans, listAllUsers } from "@/lib/fetch/fetchJobs";
 
 export const metadata = {
-  title: "Users | WorkSphere",
+  title: "Users | JobNest",
 };
 
 const UsersPage = async () => {

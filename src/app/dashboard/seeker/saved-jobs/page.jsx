@@ -4,7 +4,7 @@ import { getSavedJobs } from "@/lib/fetch/fetchJobs";
 import { headers } from "next/headers";
 
 export const metadata = {
-  title: "Saved Jobs | WorkSphere",
+  title: "Saved Jobs | JobNest",
 };
 
 const SavedJobsPage = async () => {
@@ -12,11 +12,11 @@ const SavedJobsPage = async () => {
     headers: await headers(),
   });
   const user = session?.user;
-  const { result, total } = await getSavedJobs(user?.id);
+  const { result, total, applied } = await getSavedJobs(user?.id);
 
   return (
     <div>
-      <SeekerSavedJobs savedJobs={result} total={total} />
+      <SeekerSavedJobs savedJobs={result} total={total} applied={applied} />
     </div>
   );
 };

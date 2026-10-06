@@ -9,9 +9,9 @@ import {
   Input,
   Label,
   TextField,
+  toast,
 } from "@heroui/react";
 import React, { useState } from "react";
-import { toast } from "sonner";
 
 const SeekerProfile = ({ user }) => {
   const [profileImage, setProfileImage] = useState(user?.image);
@@ -37,7 +37,7 @@ const SeekerProfile = ({ user }) => {
       ) || profileImage !== user?.image;
 
     if (!hasChanges) {
-      toast.info("No changes to update");
+      toast("No changes to update");
       return;
     }
 
@@ -51,7 +51,7 @@ const SeekerProfile = ({ user }) => {
     });
 
     if (error) {
-      toast.error(error.message || "Failed to update profile");
+      toast.danger(error.message || "Failed to update profile");
       return;
     }
 
@@ -226,7 +226,7 @@ const SeekerProfile = ({ user }) => {
           </TextField>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-2">
             <button
               type="submit"
               className="bg-foreground font-medium text-background px-4 py-2 cursor-pointer select-none rounded-sm active:bg-foreground/80 duration-75"
@@ -235,7 +235,7 @@ const SeekerProfile = ({ user }) => {
             </button>
             <button
               type="button"
-              className="bg-white dark:bg-red-500 border border-red-400 dark:border-red-500 text-red-500 dark:text-white active:text-red-400 dark:active:text-white dark:active:opacity-80 px-3 font-medium  rounded-sm cursor-pointer select-none"
+              className="bg-white dark:bg-transparent text-rose-500 active:text-rose-600 dark:active:opacity-80 px-3 font-medium cursor-pointer select-none"
             >
               Reset Password
             </button>

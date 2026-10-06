@@ -15,14 +15,16 @@ import {
   TextField,
   ListBox,
   DateField,
+  toast,
+  Checkbox,
 } from "@heroui/react";
 import React, { useState } from "react";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const RecruiterEditJob = ({ job }) => {
   const router = useRouter();
   const [jobType, setJobType] = useState(job.jobType || "");
+  const [isRemote, setIsRemote] = useState(job.isRemote || false);
 
   const {
     _id,
@@ -39,7 +41,7 @@ const RecruiterEditJob = ({ job }) => {
   } = job;
 
   const inputClassName =
-    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-background/70 placeholder:text-foreground/40 mt-1";
+    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black/50 placeholder:text-foreground/40 mt-1";
 
   const industries = [
     { id: "technology", label: "Technology" },
@@ -64,8 +66,9 @@ const RecruiterEditJob = ({ job }) => {
     const newData = Object.fromEntries(data.entries());
     newData.salaryMin = parseInt(newData.salaryMin, 10);
     newData.salaryMax = parseInt(newData.salaryMax, 10);
+    newData.isRemote = isRemote;
 
-    if (newData.jobType === "remote") {
+    if (isRemote) {
       newData.city = null;
       newData.country = null;
     }
@@ -73,10 +76,10 @@ const RecruiterEditJob = ({ job }) => {
     const res = await editJob(_id, newData);
 
     if (res.modifiedCount || res.matchedCount) {
-      toast.success("Job updated successfully");
+      toast.success("Job updated");
       router.push("/dashboard/recruiter/jobs");
     } else {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     }
   };
 
@@ -92,7 +95,7 @@ const RecruiterEditJob = ({ job }) => {
       <div className="flex items-center justify-center mt-4">
         <Form
           onSubmit={handleForm}
-          className="relative p-6 w-full sm:w-xl lg:w-2xl rounded-lg bg-white dark:bg-foreground/10 border shadow-xs"
+          className="relative p-6 w-full sm:w-xl lg:w-2xl rounded-lg bg-white dark:bg-foreground/7 border shadow-xs"
         >
           <Fieldset className="w-full mb-8">
             <Fieldset.Legend>Job Information</Fieldset.Legend>
@@ -330,7 +333,25 @@ const RecruiterEditJob = ({ job }) => {
                 </TextField>
               </div>
 
-              {jobType !== "remote" && (
+              <Checkbox
+                isSelected={isRemote}
+                onChange={setIsRemote}
+                className="w-fit"
+              >
+                <Checkbox.Content className="flex flex-row items-center gap-2">
+                  <Checkbox.Control
+                    className="bg-foreground/5 dark:bg-foreground/10 border border-foreground/10 ring-0 rounded-xl"
+                    style={{
+                      boxShadow: "none",
+                    }}
+                  >
+                    <Checkbox.Indicator />
+                  </Checkbox.Control>
+                  It&apos;s a remote job
+                </Checkbox.Content>
+              </Checkbox>
+
+              {!isRemote && (
                 <div className="flex flex-col sm:flex-row gap-4">
                   <TextField
                     isRequired={jobType !== "remote"}
@@ -503,6 +524,7 @@ const RecruiterEditJob = ({ job }) => {
               <Button
                 type="submit"
                 className="w-full sm:w-1/2 py-6 rounded-md bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-600 pr-6 text-base"
+                style={{ boxShadow: "none" }}
               >
                 <Check />
                 Update Job

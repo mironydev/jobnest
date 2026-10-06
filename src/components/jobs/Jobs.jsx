@@ -42,9 +42,11 @@ const Jobs = ({ jobs, total, searchQuery, savedJobs }) => {
         {jobs.length ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {jobs.map((job) => (
-                <JobsCard key={job._id} job={job} savedJobs={savedJobs} />
-              ))}
+              {jobs
+                .filter((job) => job.isActive === true)
+                .map((job) => (
+                  <JobsCard key={job._id} job={job} savedJobs={savedJobs} />
+                ))}
             </div>
             <JobsPagination page={page} setPage={handleSetPage} total={total} />
           </>

@@ -2,7 +2,7 @@ import ApplicationDetails from "@/components/dashboard/seeker/ApplicationDetails
 import { getApplicationDetails } from "@/lib/fetch/fetchApplications";
 
 export const metadata = {
-  title: "Application Details | WorkSphere",
+  title: "Application Details | JobNest",
 };
 
 const RecruiterApplicationDetailsPage = async ({ params }) => {

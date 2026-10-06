@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { CloudArrowUpIn } from "@gravity-ui/icons";
-import { toast } from "sonner";
+
 import Image from "next/image";
 import { uploadToImgBB } from "@/lib/uploadImage";
+import { toast } from "@heroui/react";
 
 export default function ImageUpload({
   onImageUpload,
@@ -31,7 +32,7 @@ export default function ImageUpload({
       const url = await uploadToImgBB(file);
       onImageUpload(url);
     } catch (error) {
-      toast.error("Failed to upload");
+      toast.danger("Failed to upload");
       setPreview(null);
     } finally {
       setUploading(false);
@@ -47,7 +48,7 @@ export default function ImageUpload({
               width={50}
               height={50}
               src={preview}
-              alt="Preview"
+              alt="Image preview"
               className={`${previewSize} object-cover rounded`}
             />
             <input

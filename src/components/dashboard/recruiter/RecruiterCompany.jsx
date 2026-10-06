@@ -10,6 +10,7 @@ import {
   Modal,
   Separator,
   Tooltip,
+  toast,
 } from "@heroui/react";
 import Link from "next/link";
 import {
@@ -20,7 +21,6 @@ import {
   PlanetEarth,
 } from "@gravity-ui/icons";
 import { deleteCompany } from "@/lib/actions/company";
-import { toast } from "sonner";
 import RecruiterEditCompanyModal from "./RecruiterEditCompanyModal";
 import { capitalize } from "@/lib/helpers";
 import { Pencil, Trash2 } from "lucide-react";
@@ -34,7 +34,7 @@ const RecruiterCompany = ({ companies }) => {
     const res = await deleteCompany(companyId);
 
     if (res.companyDeleted.deletedCount) {
-      toast.error(`${companyName} & all of its jobs has been deleted`, {
+      toast.danger(`${companyName} & all of its jobs has been deleted`, {
         duration: 5000,
         icon: (
           <div className="p-px bg-red-600 text-white text-sm rounded-full">
@@ -45,7 +45,7 @@ const RecruiterCompany = ({ companies }) => {
 
       setDeletingCompany(null);
     } else {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     }
   };
 

@@ -1,7 +1,6 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import React from "react";
 import Apply from "./Apply";
 import { getJobDetails, getPlans } from "@/lib/fetch/fetchJobs";
 import { getApplications } from "@/lib/fetch/fetchApplications";
@@ -11,7 +10,7 @@ export async function generateMetadata({ params }) {
   const job = await getJobDetails(id);
 
   return {
-    title: `Apply for ${job.jobTitle} | WorkSphere`,
+    title: `Apply for ${job.jobTitle} | JobNest`,
     description: `Apply for the ${job.jobTitle} position at ${job.company.companyName}.`,
   };
 }
@@ -23,16 +22,11 @@ const ApplyPage = async ({ params }) => {
   });
   const user = session?.user;
 
-  const plan = await getPlans(user?.plan);
-
-  const applications = await getApplications(user?.id);
-  const totalApplications = applications.length;
-
   if (!user) {
     redirect(`/login?redirect=jobs/${id}/apply`);
   }
 
-  if (user.accountType !== "seeker") {
+  if (user?.accountType !== "seeker") {
     return (
       <div className="px-4 flex justify-center items-center h-screen ">
         <div className="max-w-md w-full rounded-xl border border-foreground/15 bg-white dark:bg-foreground/5 p-8 text-center">
@@ -68,7 +62,13 @@ const ApplyPage = async ({ params }) => {
     );
   }
 
-  const job = await getJobDetails(id);
+  const [plan, applications, job] = await Promise.all([
+    getPlans(user.plan),
+    getApplications(user.id),
+    getJobDetails(id),
+  ]);
+
+  const totalApplications = applications.length;
 
   return (
     <div className="mt-26 px-4">

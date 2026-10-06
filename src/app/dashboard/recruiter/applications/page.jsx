@@ -2,7 +2,7 @@ import RecruiterApplications from "@/components/dashboard/recruiter/RecruiterApp
 import { getRecruiterApplications } from "@/lib/fetch/fetchApplications";
 
 export const metadata = {
-  title: "Applications | WorkSphere",
+  title: "Applications | JobNest",
 };
 
 const ApplicationsPage = async () => {

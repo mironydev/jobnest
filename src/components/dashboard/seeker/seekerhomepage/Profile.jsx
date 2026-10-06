@@ -1,11 +1,7 @@
-import { useSessionClient } from "@/lib/helpers";
 import { Avatar } from "@heroui/react";
 import Link from "next/link";
-import React from "react";
 
-const Profile = () => {
-  const { user } = useSessionClient();
-
+const Profile = ({ user }) => {
   // Calculate profile completion percentage
   const getProfileCompletion = () => {
     const requiredFields = ["name", "email"];

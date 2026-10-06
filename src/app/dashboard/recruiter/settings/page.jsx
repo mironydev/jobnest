@@ -1,7 +1,7 @@
 import RecruiterSettings from "@/components/dashboard/recruiter/RecruiterSettings";
 
 export const metadata = {
-  title: "Settings | WorkSphere",
+  title: "Settings | JobNest",
 };
 
 const SettingsPage = () => {

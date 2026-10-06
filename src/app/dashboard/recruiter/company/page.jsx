@@ -3,7 +3,7 @@ import { getMyCompanies } from "@/lib/fetch/fetchCompanies";
 import React from "react";
 
 export const metadata = {
-  title: "My Companies | WorkSphere",
+  title: "My Companies | JobNest",
 };
 
 const CompanyPage = async () => {

@@ -11,7 +11,7 @@ const Loading = () => {
   const selectStyle = "ring-0 rounded-sm ring-offset-0";
 
   return (
-    <div className="mt-26 px-4">
+    <div className="mt-26 px-4 max-w-6xl mx-auto">
       <div>
         <h1 className="text-4xl md:text-5xl font-bold text-center sm:py-5">
           Find Jobs
@@ -111,28 +111,26 @@ const Loading = () => {
               className="flex flex-col justify-between p-6 rounded-xl bg-white dark:bg-foreground/10 border"
             >
               <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Skeleton className="w-8 h-8 rounded-full" />
-                  <Skeleton className="h-4 w-24 rounded" />
+                <div className="flex justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <Skeleton className="w-7 h-7 rounded-lg" />
+                    <Skeleton className="h-4 w-16 rounded" />
+                  </div>
+                  <Skeleton className="h-4.25 w-2.5 mr-1"></Skeleton>
                 </div>
-                <Skeleton className="h-9 w-3/4 rounded" />
-                <div className="space-y-2 mt-4">
-                  <Skeleton className="h-4 w-full rounded" />
-                  <Skeleton className="h-4 w-2/3 rounded" />
-                  <Skeleton className="h-4 w-1/3 rounded sm:hidden" />
-                </div>
+                <Skeleton className="h-7 w-3/4 rounded" />
+
                 <div className="space-y-1.5 my-6">
                   <div className="flex gap-1">
-                    <Skeleton className="h-7 w-26 rounded-full" />
-                    <Skeleton className="h-7 w-20 rounded-full" />
+                    <Skeleton className="h-7 w-32 rounded-full" />
                     <Skeleton className="h-7 w-20 rounded-full" />
                   </div>
                   <div className="flex gap-1">
-                    <Skeleton className="h-7 w-28 rounded-full" />
+                    <Skeleton className="h-7 w-22 rounded-full" />
                   </div>
                 </div>
               </div>
-              <Skeleton className="h-6 w-26 ml-2 mt-2 mb-1 rounded-full " />
+              <Skeleton className="h-6 w-26  mt-2 mb-1 rounded-full " />
             </div>
           ))}
         </div>

@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 export const metadata = {
-  title: "My Profile | WorkSphere",
+  title: "My Profile | JobNest",
 };
 
 const SeekerProfilePage = async () => {

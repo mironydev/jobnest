@@ -1,3 +1,4 @@
+import AboutJobNest from "@/components/homepage/AboutJobNest";
 import Banner from "@/components/homepage/Banner";
 import BottomBanner from "@/components/homepage/BottomBanner";
 import Careertools from "@/components/homepage/Careertools";
@@ -18,6 +19,7 @@ export default async function Home() {
     <div>
       <Banner />
       <FeaturedJobs jobs={jobs} />
+      <AboutJobNest />
       <Careertools />
       <PricingHomepage user={user} />
       <BottomBanner user={user} />

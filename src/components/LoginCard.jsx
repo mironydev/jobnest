@@ -10,12 +10,12 @@ import {
   Separator,
   Spinner,
   TextField,
+  toast,
 } from "@heroui/react";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { toast } from "sonner";
 
 const LoginCard = () => {
   const [message, setMessage] = useState("");
@@ -147,7 +147,7 @@ const LoginCard = () => {
           <div className="flex gap-2 mt-2">
             <Button
               type="submit"
-              className="rounded-md w-full bg-indigo-600 text-base mt-2"
+              className="rounded-md w-full bg-indigo-600 text-base mt-2 py-5"
               style={{ outline: "none", boxShadow: "none" }}
               isLoading={isLoading}
               isDisabled={isLoading || googleLoading}

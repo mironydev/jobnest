@@ -26,7 +26,7 @@ const SeekerProfileView = ({ user }) => {
               {user?.image ? (
                 <Image
                   src={user.image}
-                  alt={user.name}
+                  alt={`${user.name} profile picture`}
                   width={128}
                   height={128}
                   className="w-full h-full object-cover"
@@ -118,7 +118,7 @@ const SeekerProfileView = ({ user }) => {
         </div>
         <Link
           href={"/dashboard/seeker/profile/edit"}
-          className="absolute top-3 right-3 flex items-center gap-2 bg-foreground/90 sm:bg-transparent text-background sm:text-foreground font-medium rounded-lg p-3 sm:px-4 sm:py-2 select-none"
+          className="absolute top-3 right-3 flex items-center gap-2 bg-foreground/90 sm:bg-transparent text-background sm:text-foreground font-medium rounded-lg p-3 sm:px-4 sm:py-2 select-none active:scale-95 duration-100"
         >
           <span className="hidden sm:block">Edit Profile</span>
           <PencilToSquare className="scale-110 sm:scale-100" />
@@ -192,7 +192,7 @@ const SeekerProfileView = ({ user }) => {
           <h2 className="text-xl font-semibold">Professional Information</h2>
           <Link
             href={"/dashboard/seeker/profile/edit"}
-            className="flex items-center gap-2 bg-foreground/5 dark:bg-foreground/10 text-foreground font-medium rounded-lg p-3 sm:px-4 sm:py-2 select-none"
+            className="flex items-center gap-2 bg-foreground/5 dark:bg-foreground/10 text-foreground font-medium rounded-lg p-3 sm:px-4 sm:py-2 select-none active:scale-95 duration-100"
           >
             <span className="hidden sm:block">Edit</span>
             <PencilToSquare className="scale-110 sm:scale-100" />

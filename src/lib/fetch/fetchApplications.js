@@ -9,8 +9,18 @@ export const getApplicationDetails = async (appicationId) => {
   return res.json();
 };
 
-export const getApplications = async (userId) => {
-  const res = await fetch(`${url}/applications?userId=${userId}`);
+export const getApplications = async (
+  userId,
+  searchQuery = "",
+  sortBy = "newest",
+) => {
+  const headers = await authHeader();
+
+  const res = await fetch(
+    `${url}/applications?userId=${userId}&searchQuery=${searchQuery}&sortby=${sortBy}`,
+    { headers },
+  );
+
   return res.json();
 };
 

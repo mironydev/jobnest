@@ -12,12 +12,11 @@ import {
   CircleDollar,
   CirclePlusFill,
 } from "@gravity-ui/icons";
-import { Avatar, Drawer } from "@heroui/react";
+import { Avatar, Drawer, toast } from "@heroui/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { capitalize, useSessionClient } from "@/lib/helpers";
 import { signOut } from "@/lib/auth-client";
-import { toast } from "sonner";
 import { useDashboardMenu } from "@/app/providers";
 import { useTheme } from "next-themes";
 
@@ -106,7 +105,7 @@ export default function DashboardDrawer() {
       setIsDashboardMenuOpen(false);
       router.refresh();
     } else {
-      toast.error("Couldn't log out, something went wrong.");
+      toast.danger("Couldn't log out, something went wrong.");
     }
   };
 
@@ -116,7 +115,7 @@ export default function DashboardDrawer() {
         <Drawer.Content placement="left">
           <Drawer.Dialog className="w-72 h-full flex flex-col px-2 py-0 bg-white dark:bg-[#191919]">
             <div className="flex items-center justify-between px-5 py-4 border-b border-foreground/10">
-              <p className="font-bold text-lg">WorkSphere</p>
+              <p className="font-bold text-lg">JobNest</p>
 
               <Drawer.CloseTrigger className="p-1.5 rounded-md bg-transparent hover:bg-foreground/5">
                 <Xmark className="size-5" />

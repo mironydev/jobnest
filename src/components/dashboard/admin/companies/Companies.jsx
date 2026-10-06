@@ -262,7 +262,7 @@ const Companies = ({ allCompanies, total, approved, rejected, pending }) => {
                   {company.logo ? (
                     <Image
                       src={company.logo}
-                      alt={company.companyName || "Company Logo"}
+                      alt={`${company.companyName} logo`}
                       width={100}
                       height={100}
                       className="h-11 w-11 rounded-lg select-none object-cover"

@@ -16,9 +16,9 @@ import {
   ListBox,
   DateField,
   Checkbox,
+  toast,
 } from "@heroui/react";
 import React, { useState } from "react";
-import { toast } from "sonner";
 import RecruiterAddCompanyModal from "./RecruiterAddCompanyModal";
 import { useRouter } from "next/navigation";
 
@@ -27,7 +27,7 @@ const RecruiterPostJob = ({ userId, companies }) => {
   const router = useRouter();
 
   const inputClassName =
-    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-background/70 placeholder:text-foreground/40 mt-1";
+    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black/50 placeholder:text-foreground/40 mt-1";
 
   const industries = [
     { id: "technology", label: "Technology" },
@@ -62,7 +62,7 @@ const RecruiterPostJob = ({ userId, companies }) => {
       toast.success("Job created");
       router.push("/dashboard/recruiter/jobs");
     } else {
-      toast.error("Something went wrong");
+      toast.danger("Something went wrong");
     }
   };
 
@@ -130,7 +130,7 @@ const RecruiterPostJob = ({ userId, companies }) => {
       <div className="flex items-center justify-center mt-4">
         <Form
           onSubmit={onSubmit}
-          className="relative p-6 w-full sm:w-xl lg:w-2xl rounded-lg bg-white dark:bg-foreground/10 border"
+          className="relative p-6 w-full sm:w-xl lg:w-2xl rounded-lg bg-white dark:bg-foreground/7 border"
         >
           <Fieldset className="w-full mb-8">
             <Fieldset.Legend>Job Information</Fieldset.Legend>

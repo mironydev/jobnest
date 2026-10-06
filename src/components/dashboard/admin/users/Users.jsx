@@ -13,13 +13,13 @@ import {
   FieldGroup,
   Label,
   Dropdown,
+  toast,
 } from "@heroui/react";
 import Image from "next/image";
 import { capitalize, formatDate } from "@/lib/helpers";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { Check, PersonXmark } from "@gravity-ui/icons";
-import { toast } from "sonner";
 import { updatePlan } from "@/lib/actions/plan";
 import UserStats from "./UserStats";
 import { useEffect, useState } from "react";
@@ -88,7 +88,7 @@ const Users = ({ allUsers, allPlans }) => {
       toast.success(`Role updated to ${capitalize(newRole)}`);
       router.refresh();
     } else {
-      toast.error("Failed to update role");
+      toast.danger("Failed to update role");
     }
   };
 
@@ -403,7 +403,7 @@ const Users = ({ allUsers, allPlans }) => {
                   {isUser.image ? (
                     <Image
                       src={isUser.image}
-                      alt={isUser.name || "User"}
+                      alt={`${isUser.name} profile picture`}
                       width={100}
                       height={100}
                       className="h-11 w-11 rounded-full select-none object-cover"
@@ -640,7 +640,7 @@ const Users = ({ allUsers, allPlans }) => {
                     {isUser.image ? (
                       <Image
                         src={isUser.image}
-                        alt={isUser.name || "User"}
+                        alt={`${isUser.name} profile picture`}
                         width={100}
                         height={100}
                         className="h-10 w-10 rounded-full object-cover select-none"

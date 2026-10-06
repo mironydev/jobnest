@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 export const metadata = {
-  title: "Edit Profile | WorkSphere",
+  title: "Edit Profile | JobNest",
 };
 
 const EditProfilePage = async () => {

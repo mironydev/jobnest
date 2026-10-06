@@ -2,7 +2,7 @@ import History from "@/components/dashboard/seeker/History";
 import React from "react";
 
 export const metadata = {
-  title: "History | WorkSphere",
+  title: "History | JobNest",
 };
 
 const HistoryPage = () => {

@@ -13,12 +13,12 @@ const Careertools = () => {
   return (
     <div className="mt-28 sm:mt-36 bg-white dark:bg-white/5 rounded-lg mx-4 px-4 pt-8 pb-4 sm:px-8 sm:py-14 border">
       <div className="text-center space-y-2">
-        <div className="flex justify-center items-center gap-3">
-          <span className="bg-black dark:bg-cyan-500 h-2 w-2 rounded-xs"></span>
-          <p className="text-lg text-stone-500 dark:text-stone-300">
+        <div className="flex justify-center items-center gap-3 mb-3">
+          <span className="bg-indigo-500 h-1.5 w-1.5 rounded-xs"></span>
+          <p className="text-sm font-semibold tracking-widest text-foreground/70">
             CAREER TOOLS
           </p>
-          <span className="bg-black dark:bg-cyan-500 h-2 w-2 rounded-xs"></span>
+          <span className="bg-indigo-500 h-1.5 w-1.5 rounded-xs"></span>
         </div>
         <h2 className="text-4xl font-semibold max-w-2xl mx-auto">
           Tools to Help You Find the Right Job

@@ -2,7 +2,7 @@ import AdminHomepage from "@/components/dashboard/admin/AdminHomepage";
 import { getAdminStats, listAllUsers } from "@/lib/fetch/fetchJobs";
 
 export const metadata = {
-  title: "Dashboard | WorkSphere",
+  title: "Dashboard | JobNest",
 };
 
 const AdminPage = async () => {

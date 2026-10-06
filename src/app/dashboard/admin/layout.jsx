@@ -33,7 +33,7 @@ const AdminLayoutPage = async ({ children }) => {
               Go Home
             </Link>
             <a
-              href="mailto:support@worksphere.com"
+              href="mailto:mironydev@gmail.com"
               className="flex items-center justify-center gap-2 w-fit bg-white dark:bg-foreground/10 active:bg-foreground/5 border  font-semibold px-8 py-3 rounded-lg transition-colors"
             >
               <Envelope className="w-5 h-5" />

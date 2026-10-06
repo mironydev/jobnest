@@ -10,10 +10,9 @@ import {
   CircleCheckFill,
   Briefcase,
 } from "@gravity-ui/icons";
-import { Button, Modal, Skeleton, Tabs } from "@heroui/react";
+import { Button, Modal, toast, Tabs } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "sonner";
 
 const Pricing = ({ user }) => {
   const [isDowngradeModalOpen, setIsDowngradeModalOpen] = useState(false);
@@ -254,7 +253,7 @@ const Pricing = ({ user }) => {
         setIsDowngradeModalOpen(false);
       }
     } catch (error) {
-      toast.error("Something went wrong.");
+      toast.danger("Something went wrong.");
     }
   };
 
@@ -372,20 +371,19 @@ const Pricing = ({ user }) => {
                         <button
                           type={plan.name === "Starter" ? "button" : "submit"}
                           onClick={(e) => {
-                            if (plan.name === "Starter") {
-                              setIsDowngradeModalOpen(true);
-                            }
-
                             if (!user) {
                               e.preventDefault();
                               router.push("/login?redirect=/pricing");
+                              return;
+                            }
+
+                            if (plan.name === "Starter") {
+                              setIsDowngradeModalOpen(true);
                             }
                           }}
-                          disabled={
-                            isCurrentPlan || (!user && plan.name === "Starter")
-                          }
+                          disabled={isCurrentPlan}
                           className={`select-none flex justify-between py-4 px-6 w-full rounded-lg mt-8 font-semibold active:scale-95 duration-100 text-base lg:text-sm ${
-                            isCurrentPlan || (!user && plan.name === "Starter")
+                            isCurrentPlan
                               ? plan.popular
                                 ? "active:scale-100 bg-white dark:bg-indigo-600 text-indigo-600 dark:text-white"
                                 : "active:scale-100 bg-foreground text-background"
@@ -395,16 +393,13 @@ const Pricing = ({ user }) => {
                           }`}
                         >
                           <div className="w-full text-left">
-                            {!user && plan.name === "Starter"
-                              ? "Default Plan"
-                              : isCurrentPlan
-                                ? "Current Plan"
-                                : "Choose This Plan"}
+                            {isCurrentPlan
+                              ? "Current Plan"
+                              : "Choose This Plan"}
                           </div>
 
                           <div className="flex justify-center items-center">
-                            {!user &&
-                            plan.name === "Starter" ? null : isCurrentPlan ? (
+                            {isCurrentPlan ? (
                               <CircleCheckFill className="w-5 h-5" />
                             ) : (
                               <ArrowRight className="w-5 h-5" />
@@ -508,20 +503,19 @@ const Pricing = ({ user }) => {
                         <button
                           type={plan.name === "Starter" ? "button" : "submit"}
                           onClick={(e) => {
-                            if (plan.name === "Starter") {
-                              setIsDowngradeModalOpen(true);
-                            }
-
                             if (!user) {
                               e.preventDefault();
                               router.push("/login?redirect=/pricing");
+                              return;
+                            }
+
+                            if (plan.name === "Starter") {
+                              setIsDowngradeModalOpen(true);
                             }
                           }}
-                          disabled={
-                            isCurrentPlan || (!user && plan.name === "Starter")
-                          }
+                          disabled={isCurrentPlan}
                           className={`select-none flex justify-between py-4 px-6 w-full rounded-lg mt-8 font-semibold active:scale-95 duration-100 text-base lg:text-sm ${
-                            isCurrentPlan || (!user && plan.name === "Starter")
+                            isCurrentPlan
                               ? plan.popular
                                 ? "active:scale-100 bg-white dark:bg-indigo-600 text-indigo-600 dark:text-white"
                                 : "active:scale-100 bg-foreground text-background"
@@ -531,16 +525,13 @@ const Pricing = ({ user }) => {
                           }`}
                         >
                           <div className="w-full text-left">
-                            {!user && plan.name === "Starter"
-                              ? "Default Plan"
-                              : isCurrentPlan
-                                ? "Current Plan"
-                                : "Choose This Plan"}
+                            {isCurrentPlan
+                              ? "Current Plan"
+                              : "Choose This Plan"}
                           </div>
 
                           <div className="flex justify-center items-center">
-                            {!user &&
-                            plan.name === "Starter" ? null : isCurrentPlan ? (
+                            {isCurrentPlan ? (
                               <CircleCheckFill className="w-5 h-5" />
                             ) : (
                               <ArrowRight className="w-5 h-5" />

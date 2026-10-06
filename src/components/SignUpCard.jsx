@@ -13,12 +13,12 @@ import {
   TextField,
   Radio,
   RadioGroup,
+  toast,
 } from "@heroui/react";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { toast } from "sonner";
 
 const SignUpCard = () => {
   const [message, setMessage] = useState("");
@@ -221,7 +221,7 @@ const SignUpCard = () => {
           <div className="flex gap-2">
             <Button
               type="submit"
-              className="rounded-md w-full bg-indigo-600 text-base"
+              className="rounded-md w-full bg-indigo-600 text-base py-5"
               style={{ outline: "none", boxShadow: "none" }}
               isLoading={isLoading}
               isDisabled={isLoading || googleLoading}

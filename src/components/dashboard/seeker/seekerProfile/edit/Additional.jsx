@@ -11,10 +11,10 @@ import {
   Label,
   TextArea,
   TextField,
+  toast,
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { toast } from "sonner";
 
 const SeekerAdditional = ({ user }) => {
   const [skills, setSkills] = useState(
@@ -54,14 +54,14 @@ const SeekerAdditional = ({ user }) => {
     });
 
     if (!hasChanges) {
-      toast.info("No changes to update");
+      toast("No changes to update");
       return;
     }
 
     const { data, error } = await updateUser(updatedData);
 
     if (error) {
-      toast.error(error.message || "Failed to update details");
+      toast.danger(error.message || "Failed to update details");
       return;
     }
     toast.success("Professional details updated");

@@ -4,7 +4,7 @@ import { getMyCompanies } from "@/lib/fetch/fetchCompanies";
 import { headers } from "next/headers";
 
 export const metadata = {
-  title: "Post Job | WorkSphere",
+  title: "Post Job | JobNest",
 };
 
 export default async function AddJobPage() {
