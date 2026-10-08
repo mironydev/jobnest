@@ -266,7 +266,7 @@ const JobsFilter = ({ searchQuery, page, setPage }) => {
                 setPage(1);
               }}
             >
-              <Checkbox.Content className="flex flex-row items-center gap-1">
+              <Checkbox.Content className="flex flex-row items-center gap-2">
                 <Checkbox.Control
                   className="bg-white dark:bg-foreground/10 border border-foreground/20 dark:border-foreground/10 ring-0 rounded-xl"
                   style={{

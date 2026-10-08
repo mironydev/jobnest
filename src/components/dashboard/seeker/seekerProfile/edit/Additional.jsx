@@ -30,7 +30,7 @@ const SeekerAdditional = ({ user }) => {
   const router = useRouter();
 
   const inputClassName =
-    "rounded-md border border-foreground/15 focus-within:border-transparent focus-within:ring-1 focus-within:ring-foreground/50 aria-invalid:focus-within:ring-red-500 bg-foreground/2 focus-within:bg-white dark:focus-within:bg-black dark:bg-black placeholder:text-foreground/40";
+    "rounded-md border border-foreground/15 focus-within:border-transparent focus-within:ring-1 focus-within:ring-foreground/50 aria-invalid:focus-within:ring-red-500 bg-foreground/2 focus-within:bg-white dark:focus-within:bg-black dark:bg-black/60 placeholder:text-foreground/40";
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ const SeekerAdditional = ({ user }) => {
   };
 
   return (
-    <div className="rounded-lg bg-white dark:bg-foreground/5 border">
+    <div className="rounded-lg bg-white dark:bg-foreground/7 border">
       <div className="p-6 pb-0">
         <h2 className="text-xl font-semibold">Professional Details</h2>
       </div>

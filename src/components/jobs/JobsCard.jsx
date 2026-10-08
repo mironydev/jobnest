@@ -41,7 +41,12 @@ const JobsCard = ({ job, savedJobs }) => {
           <JobCardMenu job={job} savedJobs={savedJobs} />
         </div>
 
-        <p className="text-2xl font-semibold leading-tight">{jobTitle}</p>
+        <Link
+          href={`/jobs/${_id}`}
+          className="text-2xl font-semibold leading-tight"
+        >
+          {jobTitle}
+        </Link>
 
         <div className="flex flex-wrap gap-1 space-y-0.5 my-6 text-xs">
           <div className="border dark:border-foreground/15 px-2.5 py-1.5 rounded-full flex items-center gap-1">

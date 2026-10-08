@@ -17,7 +17,7 @@ const SeekerProfile = ({ user }) => {
   const [profileImage, setProfileImage] = useState(user?.image);
 
   const inputClassName =
-    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black placeholder:text-foreground/40";
+    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black/60 placeholder:text-foreground/40";
 
   const handleImageUpload = (imageUrl) => {
     setProfileImage(imageUrl);
@@ -61,7 +61,7 @@ const SeekerProfile = ({ user }) => {
   return (
     <>
       <h1 className="text-3xl font-semibold">Edit Profile</h1>
-      <div className="rounded-lg bg-white dark:bg-foreground/5 border">
+      <div className="rounded-lg bg-white dark:bg-foreground/7 border">
         <div className="p-6 pb-0">
           <h2 className="text-xl font-semibold">Profile Information</h2>
         </div>
@@ -226,18 +226,12 @@ const SeekerProfile = ({ user }) => {
           </TextField>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-2">
+          <div className="">
             <button
               type="submit"
               className="bg-foreground font-medium text-background px-4 py-2 cursor-pointer select-none rounded-sm active:bg-foreground/80 duration-75"
             >
               Update Profile
-            </button>
-            <button
-              type="button"
-              className="bg-white dark:bg-transparent text-rose-500 active:text-rose-600 dark:active:opacity-80 px-3 font-medium cursor-pointer select-none"
-            >
-              Reset Password
             </button>
           </div>
         </Form>

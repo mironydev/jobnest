@@ -62,11 +62,11 @@ export default function DashboardSidebar() {
       label: "Saved Jobs",
       href: "/dashboard/seeker/saved-jobs",
     },
-    {
-      icon: ClockArrowRotateLeft,
-      label: "History",
-      href: "/dashboard/seeker/history",
-    },
+    // {
+    //   icon: ClockArrowRotateLeft,
+    //   label: "History",
+    //   href: "/dashboard/seeker/history",
+    // },
     {
       icon: Gear,
       label: "Profile",

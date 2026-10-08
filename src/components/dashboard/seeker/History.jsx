@@ -7,7 +7,7 @@ const History = () => {
           This page is currently under development.
         </p>
         <p className="mt-1 text-sm text-muted">
-          We are working on it and it will be available soon.
+          I am working on it and it will be available soon.
         </p>
       </div>
     </div>

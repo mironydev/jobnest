@@ -102,7 +102,7 @@ export default function Navbar() {
                   !user
                     ? "/"
                     : user.accountType === "seeker"
-                      ? "/dashboard/seeker"
+                      ? "/jobs?page=1"
                       : user.accountType === "recruiter"
                         ? "/dashboard/recruiter"
                         : "/dashboard/admin"

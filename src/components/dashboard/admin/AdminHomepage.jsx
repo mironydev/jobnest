@@ -41,9 +41,6 @@ const AdminHomepage = ({
           );
         })}
       </div>
-      <div className="text-foreground/40 flex justify-center items-center min-h-[60vh]">
-        working on it...
-      </div>
     </div>
   );
 };

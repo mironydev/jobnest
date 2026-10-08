@@ -50,7 +50,7 @@ const Apply = ({ job, user, totalApplications, plan }) => {
   };
 
   const inputClassName =
-    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black/50 placeholder:text-foreground/40";
+    "rounded-md border border-foreground/15 focus:border-transparent focus:ring-1 focus:ring-foreground/50 aria-invalid:focus:ring-red-500 bg-foreground/2 focus:bg-white dark:focus:bg-black dark:bg-black/60 placeholder:text-foreground/40";
 
   if (totalApplications >= plan.maxApplicationsPerMonth) {
     return (

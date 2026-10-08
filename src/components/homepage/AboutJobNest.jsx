@@ -28,7 +28,7 @@ const AboutJobNest = () => {
         </div>
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-          <div className="rounded-2xl border border-foreground/10 bg-white dark:bg-foreground/5 p-6 outline outline-indigo-500/10 outline-offset-4 shadow-[0_0_6px_rgba(0,0,0,0.1)]">
+          <div className="rounded-2xl border border-foreground/10 bg-white dark:bg-foreground/5 p-6 outline outline-foreground/5 outline-offset-4 dark:outline-0 shadow-[0_0_5px_rgba(0,0,0,0.1)]">
             <h3 className="text-xl font-semibold">For Job Seekers</h3>
 
             <p className="mt-3 text-muted leading-7">
@@ -38,7 +38,7 @@ const AboutJobNest = () => {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-foreground/10 bg-white dark:bg-foreground/5 p-6 outline outline-indigo-500/10 outline-offset-4 shadow-[0_0_6px_rgba(0,0,0,0.1)]">
+          <div className="rounded-2xl border border-foreground/10 bg-white dark:bg-foreground/5 p-6 outline outline-foreground/5 outline-offset-4 dark:outline-0 shadow-[0_0_5px_rgba(0,0,0,0.1)]">
             <h3 className="text-xl font-semibold">
               For Companies and Recruiters
             </h3>
